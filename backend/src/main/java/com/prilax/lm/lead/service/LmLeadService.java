@@ -64,7 +64,7 @@ public class LmLeadService {
 				lead.setLeadId(leadOld.getLeadId());
 			}
 		} else {
-			lead.setLeadId(LmUtil.getGeneratedNumber("PROD"));
+			lead.setLeadId(LmUtil.getGeneratedNumber("LEAD"));
 		}
 		lead.setId(id);
 
