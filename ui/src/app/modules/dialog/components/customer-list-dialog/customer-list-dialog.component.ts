@@ -5,10 +5,10 @@ import { CustomerService } from 'src/app/modules/customer/service/customer.servi
 
 @Component({
   selector: 'app-customer-dialog',
-  templateUrl: './customer-dialog.component.html',
-  styleUrls: ['./customer-dialog.component.scss']
+  templateUrl: './customer-list-dialog.component.html',
+  styleUrls: ['./customer-list-dialog.component.scss']
 })
-export class CustomerDialogComponent implements OnInit {
+export class CustomerListDialogComponent implements OnInit {
 
   public errorMessage: string;
   public columns: string[] = ['customerId', 'name', 'mobileNo', 'gender', 'occupation', 'status', 'address'];
@@ -16,7 +16,7 @@ export class CustomerDialogComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    public dialogRef: MatDialogRef<CustomerDialogComponent>
+    public dialogRef: MatDialogRef<CustomerListDialogComponent>
   ) { }
 
   ngOnInit() {

@@ -19,13 +19,7 @@ public class Account {
 	
 	private Double closingBalance;
 
-	private Double monthlyInterest;
-
-	private Double emi;
-
 	private String status;
-
-	private Integer tenure;
 
 	private Lead lead;
 	
@@ -73,36 +67,12 @@ public class Account {
 		this.closingBalance = closingBalance;
 	}
 
-	public Double getMonthlyInterest() {
-		return monthlyInterest;
-	}
-
-	public void setMonthlyInterest(Double monthlyInterest) {
-		this.monthlyInterest = monthlyInterest;
-	}
-
-	public Double getEmi() {
-		return emi;
-	}
-
-	public void setEmi(Double emi) {
-		this.emi = emi;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public Integer getTenure() {
-		return tenure;
-	}
-
-	public void setTenure(Integer tenure) {
-		this.tenure = tenure;
 	}
 
 	public Lead getLead() {
@@ -128,5 +98,5 @@ public class Account {
 	public void setAudit(RecordAudit audit) {
 		this.audit = audit;
 	}
-
+	
 }

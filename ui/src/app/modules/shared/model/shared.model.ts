@@ -22,6 +22,7 @@ export const allSideNavs: ISideNav[] = [
 
     { title: 'Customer', path: '/customers', icon: 'settings_accessibility', hasSubmenu: false, submenu: [] },
     { title: 'Lead', path: '/leads', icon: 'integration_instructions', hasSubmenu: false, submenu: [] },
+    { title: 'Loan Account', path: '/accounts', icon: 'manage_accounts', hasSubmenu: false, submenu: [] },
     { title: 'Product', path: '/products', icon: 'shopping_basket', hasSubmenu: false, submenu: [] },
     {
         title: 'Security', path: '', icon: 'security', hasSubmenu: true, submenu:
@@ -66,6 +67,7 @@ export class ApiEndpoint {
     public static CUSTOMERS = ApiEndpoint.API_BASE_URL + '/customers';
     public static PRODUCTS = ApiEndpoint.API_BASE_URL + '/products';
     public static LEADS = ApiEndpoint.API_BASE_URL + '/leads';
+    public static ACCOUNTS = ApiEndpoint.API_BASE_URL + '/accounts';
     static DOCUMENT: string;
 
 }

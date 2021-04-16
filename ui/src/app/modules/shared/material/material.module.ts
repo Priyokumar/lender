@@ -19,7 +19,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatProgressBarModule,
-  MatChipsModule
+  MatChipsModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 @NgModule({
@@ -41,6 +42,7 @@ import {
     MatTabsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatMenuModule,
     MatSnackBarModule,
     MatRadioModule,

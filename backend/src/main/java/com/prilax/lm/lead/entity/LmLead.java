@@ -44,7 +44,7 @@ public class LmLead implements Serializable {
 	private String status;
 
 	@Column(name = "TENURE")
-	private String tenure;
+	private Integer tenure;
 
 	@OneToOne(targetEntity = LmCustomer.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = false)
 	@JoinColumn(name = "CUSTOMER_ID")
@@ -105,11 +105,11 @@ public class LmLead implements Serializable {
 		this.status = status;
 	}
 
-	public String getTenure() {
+	public Integer getTenure() {
 		return tenure;
 	}
 
-	public void setTenure(String tenure) {
+	public void setTenure(Integer tenure) {
 		this.tenure = tenure;
 	}
 

@@ -20,7 +20,7 @@ public class Lead {
 
 	private String status;
 
-	private String tenure;
+	private Integer tenure;
 
 	private Customer customer;
 
@@ -77,11 +77,11 @@ public class Lead {
 		this.status = status;
 	}
 
-	public String getTenure() {
+	public Integer getTenure() {
 		return tenure;
 	}
 
-	public void setTenure(String tenure) {
+	public void setTenure(Integer tenure) {
 		this.tenure = tenure;
 	}
 

@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
 import { CustomerService } from '../customer/service/customer.service';
 import { ProductService } from '../product/service/product.service';
-import { CustomerModule } from '../customer/customer.module';
 import { DialogModule } from '../dialog/dialog.module';
 
 const routes: Routes = [

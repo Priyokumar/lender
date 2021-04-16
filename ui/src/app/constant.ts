@@ -29,6 +29,20 @@ export const InterestFrequencies: KeyVal[] = [
     { key: InterestFrequency.YEARLY, val: InterestFrequency.YEARLY }
 ]
 
+
+export class AccountStatus {
+    static CREATED = "Created";
+    static DISBURSED = "Disbursed";
+    static REJECTED = "Rejected";
+    static CLOSED = "Closed";
+}
+export const AccountStatuses: KeyVal[] = [
+    { key: AccountStatus.CREATED, val: AccountStatus.CREATED },
+    { key: AccountStatus.DISBURSED, val: AccountStatus.DISBURSED },
+    { key: AccountStatus.REJECTED, val: AccountStatus.REJECTED },
+    { key: AccountStatus.CLOSED, val: AccountStatus.CLOSED }
+]
+
 export class LeadStatus {
     static NEW = "New";
     static QUALIFIED = "Qualified";

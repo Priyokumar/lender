@@ -71,11 +71,9 @@ public class LmAccountService {
 			account.setAccountNo(LmUtil.getGeneratedNumber("ACC"));
 
 			if (account.getLead().getProduct().getType().equals(LmProductType.LOAN)) {
-				List<LmEmi> emis = emiService.generateEmi(account.getAmount(), account.getTenure(),
+				List<LmEmi> emis = emiService.generateEmi(account.getAmount(), account.getLead().getTenure(),
 						account.getLead().getProduct().getInterest(), account.getDateOfCreation());
 				account.setEmis(emis);
-			} else if (account.getLead().getProduct().getType().equals(LmProductType.SENDOI)) {
-				account.setMonthlyInterest(emiService.generateMonthlyInterest(account.getAmount(), account.getLead().getProduct().getInterest()));
 			}
 
 		}

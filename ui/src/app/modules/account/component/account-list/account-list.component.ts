@@ -1,36 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { ConfirmationDialogComponent } from 'src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IConfirmation, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
-import { ILead } from '../../lead.model';
-import { LeadService } from '../../service/lead.service';
+import { IAccount } from '../../account.model';
+import { AccountService } from '../../service/account.service';
 
 @Component({
-  selector: 'app-lead-list',
-  templateUrl: './lead-list.component.html',
-  styleUrls: ['./lead-list.component.scss']
+  selector: 'app-account-list',
+  templateUrl: './account-list.component.html',
+  styleUrls: ['./account-list.component.scss']
 })
-export class LeadListComponent implements OnInit {
+export class AccountListComponent implements OnInit {
 
   public errorMessage: string;
-  public columns: string[] = ['leadId', 'customerName', 'productName', 'interest', 'frequency', 'tenure', 'status', 'action'];
-  public dataSource: MatTableDataSource<ILead>;
+  public columns: string[] = ['accountNo', 'customerName', 'productName', 'amount', 'interest', 'frequency', 'tenure', 'status', 'action'];
+  public dataSource: MatTableDataSource<IAccount>;
 
   constructor(
-   
-    private leadService: LeadService,
-    
+    private accountService: AccountService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
-    this.getAllLeads();
+    this.getAllAccounts();
   }
 
-  getAllLeads() {
-    this.leadService.getAllLeads().subscribe(data => {
+  getAllAccounts() {
+    this.accountService.getAllAccounts().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     }, error => {
       console.log(error);
@@ -40,14 +38,14 @@ export class LeadListComponent implements OnInit {
   delete(id: number) {
 
     const confirmationData: IConfirmation = {
-      title: 'Delete Lead',
+      title: 'Delete Account',
       subtitle: 'Are you really sure to delete this record?'
     };
 
     this.dialog.open(ConfirmationDialogComponent, { width: '26%', data: confirmationData, disableClose: true })
       .afterClosed().subscribe(okData => {
         if (okData) {
-          this.leadService.deleteLead(id).subscribe(data => {
+          this.accountService.deleteAccount(id).subscribe(data => {
             if (data.apiMessage && data.apiMessage.error) {
               this.snackBar.openFromComponent(
                 SnackbarInfoComponent,
@@ -64,7 +62,7 @@ export class LeadListComponent implements OnInit {
                   ...SnackBarConfig.flashTopSuccessSnackBar()
                 });
             }
-            this.getAllLeads();
+            this.getAllAccounts();
           }, err => {
             console.error(err);
             if (err.error && err.error.apiMessage) {

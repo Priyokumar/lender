@@ -43,23 +43,14 @@ public class LmAccount implements Serializable {
 	@Column(name = "DATE_OF_CREATION")
 	private Date dateOfCreation = new Date();
 	
-	@Column(name = "AMOUNT")
+	@Column(name = "REPAYMENT_DATE")
 	private Date repaymentDate;
 	
 	@Column(name = "CLOSING_BALANCE")
 	private Double closingBalance;
 
-	@Column(name = "MONTHLY_INTEREST")
-	private Double monthlyInterest;
-
-	@Column(name = "EMI")
-	private Double emi;
-
 	@Column(name = "STATUS")
 	private String status;
-
-	@Column(name = "TENURE")
-	private Integer tenure;
 
 	@OneToOne(targetEntity = LmLead.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = false)
 	@JoinColumn(name = "LEAD_ID")
@@ -97,6 +88,14 @@ public class LmAccount implements Serializable {
 		this.amount = amount;
 	}
 
+	public Date getDateOfCreation() {
+		return dateOfCreation;
+	}
+
+	public void setDateOfCreation(Date dateOfCreation) {
+		this.dateOfCreation = dateOfCreation;
+	}
+
 	public Date getRepaymentDate() {
 		return repaymentDate;
 	}
@@ -113,36 +112,12 @@ public class LmAccount implements Serializable {
 		this.closingBalance = closingBalance;
 	}
 
-	public Double getMonthlyInterest() {
-		return monthlyInterest;
-	}
-
-	public void setMonthlyInterest(Double monthlyInterest) {
-		this.monthlyInterest = monthlyInterest;
-	}
-
-	public Double getEmi() {
-		return emi;
-	}
-
-	public void setEmi(Double emi) {
-		this.emi = emi;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public Integer getTenure() {
-		return tenure;
-	}
-
-	public void setTenure(Integer tenure) {
-		this.tenure = tenure;
 	}
 
 	public LmLead getLead() {
@@ -167,14 +142,6 @@ public class LmAccount implements Serializable {
 
 	public void setAudit(LmRecordAudit audit) {
 		this.audit = audit;
-	}
-
-	public Date getDateOfCreation() {
-		return dateOfCreation;
-	}
-
-	public void setDateOfCreation(Date dateOfCreation) {
-		this.dateOfCreation = dateOfCreation;
 	}
 
 }

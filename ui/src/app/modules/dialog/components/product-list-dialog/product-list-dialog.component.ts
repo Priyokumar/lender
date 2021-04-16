@@ -5,17 +5,17 @@ import { ProductService } from 'src/app/modules/product/service/product.service'
 
 @Component({
   selector: 'app-product-dialog',
-  templateUrl: './product-dialog.component.html',
-  styleUrls: ['./product-dialog.component.scss']
+  templateUrl: './product-list-dialog.component.html',
+  styleUrls: ['./product-list-dialog.component.scss']
 })
-export class ProductDialogComponent implements OnInit {
+export class ProductListDialogComponent implements OnInit {
 
   public errorMessage: string;
   public columns: string[] = ['productId', 'name', 'type', 'interest','frequency', 'securedProduct'];
   public dataSource: MatTableDataSource<IProduct>;
 
   constructor(
-    public dialogRef: MatDialogRef<ProductDialogComponent>,
+    public dialogRef: MatDialogRef<ProductListDialogComponent>,
     private productService: ProductService
   ) { }
 
