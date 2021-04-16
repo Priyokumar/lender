@@ -20,35 +20,11 @@ export const adminSideNavs: ISideNav[] = [
 
 export const allSideNavs: ISideNav[] = [
 
-    /* { title: 'Dashboard', path: '/admin/dashboard', icon: 'home', hasSubmenu: false, submenu: [] },
-     {
-         title: 'Employees', path: '', icon: 'cloud_circle', hasSubmenu: true, submenu:
-             [
-                 { title: 'Employee List', path: '/admin/employees', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 // { title: 'Attendances', path: '/admin/employees/attendences', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 // { title: 'Salaries', path: '/admin/employees/salaries', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 // { title: 'Paid Salaries', path: '/admin/employees/paid-salaries', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-             ]
-     },
-     {
-         title: 'Maintenance', path: '', icon: 'wc', hasSubmenu: true, submenu:
-             [
-                 { title: 'Admission Fees', path: '/admin/maintenances/admission-fees', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 { title: 'Classes', path: '/admin/maintenances/classes', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 { title: 'Employee Types', path: '/admin/maintenances/employee-types', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 { title: 'Designations', path: '/admin/maintenances/designations', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-             ]
-     },
-     {
-         title: 'Student Management', path: '', icon: 'wc', hasSubmenu: true, submenu:
-             [
-                 { title: 'Student', path: '/admin/students', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 { title: 'Admission', path: '/admin/students/admissions', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                 // { title: 'Attendence', path: '/admin/students/attendances', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-             ]
-     }, */
+    { title: 'Customer', path: '/customers', icon: 'settings_accessibility', hasSubmenu: false, submenu: [] },
+    { title: 'Lead', path: '/leads', icon: 'integration_instructions', hasSubmenu: false, submenu: [] },
+    { title: 'Product', path: '/products', icon: 'shopping_basket', hasSubmenu: false, submenu: [] },
     {
-        title: 'Security', path: '', icon: 'wc', hasSubmenu: true, submenu:
+        title: 'Security', path: '', icon: 'security', hasSubmenu: true, submenu:
             [
                 { title: 'Role', path: '/security/roles', icon: 'dashboard', hasSubmenu: false, submenu: [] },
                 { title: 'User', path: '/security/users', icon: 'dashboard', hasSubmenu: false, submenu: [] },
@@ -87,6 +63,9 @@ export class ApiEndpoint {
     public static LOGIN = ApiEndpoint.BASE_URL + '/login';
     public static ROLES = ApiEndpoint.API_BASE_URL + '/roles';
     public static USERS = ApiEndpoint.API_BASE_URL + '/users';
+    public static CUSTOMERS = ApiEndpoint.API_BASE_URL + '/customers';
+    public static PRODUCTS = ApiEndpoint.API_BASE_URL + '/products';
+    public static LEADS = ApiEndpoint.API_BASE_URL + '/leads';
     static DOCUMENT: string;
 
 }

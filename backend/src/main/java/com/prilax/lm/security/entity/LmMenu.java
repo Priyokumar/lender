@@ -18,7 +18,7 @@ import org.hibernate.annotations.FetchMode;
 
 /*@Entity
 @Table(name = "SC_MENU")*/
-public class ScMenu implements Serializable {
+public class LmMenu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

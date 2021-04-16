@@ -1,7 +1,5 @@
 package com.prilax.lm.security.dto;
 
-import java.util.List;
-
 import com.prilax.lm.dto.RecordAudit;
 
 public class Role {

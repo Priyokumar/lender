@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 /*@Entity
 @Table(name = "SC_LOGIN_OTP")*/
-public class ScLoginOTP implements Serializable {
+public class LmLoginOTP implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

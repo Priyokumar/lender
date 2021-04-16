@@ -34,7 +34,7 @@ public class ScSubMenu implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MENU_ID")
-	private ScMenu menu;
+	private LmMenu menu;
 
 	public int getId() {
 		return id;
@@ -76,11 +76,11 @@ public class ScSubMenu implements Serializable {
 		this.path = path;
 	}
 
-	public ScMenu getMenu() {
+	public LmMenu getMenu() {
 		return menu;
 	}
 
-	public void setMenu(ScMenu menu) {
+	public void setMenu(LmMenu menu) {
 		this.menu = menu;
 	}
 	

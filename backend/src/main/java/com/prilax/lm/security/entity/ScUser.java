@@ -45,6 +45,9 @@ public class ScUser implements Serializable {
 	
 	@Column(name = "STATUS")
 	private String status;
+	
+	@Column(name = "GENDER")
+	private String gender;
 
 	@OneToMany(targetEntity = SCUserRole.class, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "LM_ID")
@@ -116,6 +119,14 @@ public class ScUser implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }

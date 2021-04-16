@@ -13,7 +13,7 @@ import com.prilax.lm.security.dto.User;
 import com.prilax.lm.security.entity.ScUser;
 
 
-public class ScUtil {
+public class LmUtil {
 
 	public static boolean isAllPresent(Object... objects) {
 
@@ -57,18 +57,18 @@ public class ScUtil {
 
 	public static LmRecordAudit recordAudit(ScUser user, Long id) {
 
-		if (ScUtil.isAllPresent(user))
+		if (LmUtil.isAllPresent(user))
 			return null;
 		LmRecordAudit recordAudit = new LmRecordAudit();
 
-		if (ScUtil.isAllPresent(id)) {
+		if (LmUtil.isAllPresent(id)) {
 			recordAudit.setUpdatedBy(user);
-			recordAudit.setUpdatedDate(ScDateUtil.now());
+			recordAudit.setUpdatedDate(LmDateUtil.now());
 		} else {
 			recordAudit.setCreatedBy(user);
-			recordAudit.setCreatedDate(ScDateUtil.now());
+			recordAudit.setCreatedDate(LmDateUtil.now());
 			recordAudit.setUpdatedBy(user);
-			recordAudit.setUpdatedDate(ScDateUtil.now());
+			recordAudit.setUpdatedDate(LmDateUtil.now());
 		}
 
 		return recordAudit;
@@ -79,9 +79,9 @@ public class ScUtil {
 		RecordAudit dtoRecordAudit = new RecordAudit();
 
 		dtoRecordAudit.setCreatedBy(userToDto(recordAudit.getCreatedBy()));
-		dtoRecordAudit.setCreatedDate(ScDateUtil.dateToString(recordAudit.getCreatedDate()));
+		dtoRecordAudit.setCreatedDate(LmDateUtil.dateToString(recordAudit.getCreatedDate()));
 		dtoRecordAudit.setUpdatedBy(userToDto(recordAudit.getUpdatedBy()));
-		dtoRecordAudit.setUpdatedDate(ScDateUtil.dateToString(recordAudit.getUpdatedDate()));
+		dtoRecordAudit.setUpdatedDate(LmDateUtil.dateToString(recordAudit.getUpdatedDate()));
 
 		return dtoRecordAudit;
 
@@ -89,7 +89,7 @@ public class ScUtil {
 
 	private static User userToDto(ScUser user) {
 
-		if (ScUtil.isAllPresent(user))
+		if (LmUtil.isAllPresent(user))
 			return null;
 
 		User dtoUser = new User();

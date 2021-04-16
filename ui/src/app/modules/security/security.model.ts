@@ -10,4 +10,6 @@ export interface IUser {
     email: string;
     mobile: string;
     roles: IRole[];
+    gender: string;
+    status: string;
 }

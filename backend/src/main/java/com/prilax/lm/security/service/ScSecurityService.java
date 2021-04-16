@@ -35,15 +35,15 @@ import com.prilax.lm.security.dto.RolesResponse;
 import com.prilax.lm.security.dto.SubMenu;
 import com.prilax.lm.security.dto.UserResponse;
 import com.prilax.lm.security.entity.SCUserRole;
-import com.prilax.lm.security.entity.ScLoginOTP;
-import com.prilax.lm.security.entity.ScMenu;
+import com.prilax.lm.security.entity.LmLoginOTP;
+import com.prilax.lm.security.entity.LmMenu;
 import com.prilax.lm.security.entity.ScRole;
 import com.prilax.lm.security.entity.ScSubMenu;
 import com.prilax.lm.security.entity.ScUser;
 import com.prilax.lm.security.entity.ScUserAudit;
 import com.prilax.lm.service.common.CommonService;
-import com.prilax.lm.util.ScDateUtil;
-import com.prilax.lm.util.ScUtil;
+import com.prilax.lm.util.LmDateUtil;
+import com.prilax.lm.util.LmUtil;
 import com.prilax.lm.vo.ActionType;
 import com.prilax.lm.vo.ApiMessageType;
 import com.prilax.lm.vo.FieldType;
@@ -152,7 +152,7 @@ public class ScSecurityService {
 		ActionResponse res = new ActionResponse();
 
 		ScUser user = commonService.findById(id, ScUser.class);
-		if (!ScUtil.isAllPresent(user))
+		if (!LmUtil.isAllPresent(user))
 			throw new NotFoundException(ApiMessageType.USER_NOT_FOUND);
 
 		addUserAudit(ActionType.USER_LOGOUT, "User logout", user);
@@ -170,14 +170,14 @@ public class ScSecurityService {
 		String confirmPassword = changePassword.getConfirmPassword();
 		String username = changePassword.getUserName();
 
-		if (!ScUtil.isAllPresent(newPassword, confirmPassword, username))
+		if (!LmUtil.isAllPresent(newPassword, confirmPassword, username))
 			throw new InternalServerException(ApiMessageType.INSUFFICIENT_DATA);
 
 		if (!newPassword.equals(confirmPassword))
 			throw new InternalServerException(ApiMessageType.PASSWORD_MISMATCH);
 
 		ScUser user = findUserByUserName(username);
-		if (!ScUtil.isAllPresent(user))
+		if (!LmUtil.isAllPresent(user))
 			throw new NotFoundException(ApiMessageType.USER_NOT_FOUND);
 
 		user.setPassword(newPassword);
@@ -216,12 +216,12 @@ public class ScSecurityService {
 
 		ScUser user = commonService.findById(userId, ScUser.class);
 
-		if (!ScUtil.isAllPresent(user))
+		if (!LmUtil.isAllPresent(user))
 			throw new NotFoundException("No users can be found !");
 
 		List<SCUserRole> userRoles = user.getUserRoles();
 
-		if (!ScUtil.isAllPresent(userRoles)) {
+		if (!LmUtil.isAllPresent(userRoles)) {
 			res.setApiMessage(
 					new ApiMessage(true, HttpStatus.NOT_FOUND.value(), "No role found", HttpStatus.NOT_FOUND.name()));
 			res.setData(new ArrayList<>());
@@ -233,7 +233,7 @@ public class ScSecurityService {
 			Role dtoRole = new Role();
 			ScRole role = userRole.getRole();
 
-			if (ScUtil.isAllPresent(role)) {
+			if (LmUtil.isAllPresent(role)) {
 				dtoRole.setId(role.getId());
 				dtoRole.setName(role.getName());
 
@@ -291,7 +291,7 @@ public class ScSecurityService {
 		List<Filter> filters = Arrays.asList(new Filter("userId", Operator.EQUAL, FieldType.STRING, user.getId()),
 				new Filter("status", Operator.EQUAL, FieldType.STRING, OTPStatus.ACTIVE));
 
-		ScLoginOTP loginOTP = commonService.findOne(filters, ScLoginOTP.class);
+		LmLoginOTP loginOTP = commonService.findOne(filters, LmLoginOTP.class);
 
 		if (loginOTP == null) {
 			throw new UnAuthorizedException("Otp not found.");
@@ -300,7 +300,7 @@ public class ScSecurityService {
 		if (loginOTP.getOtp().equals(otp)) {
 
 			Date otpDate = loginOTP.getTimeStamp();
-			Date currentDate = ScDateUtil.now();
+			Date currentDate = LmDateUtil.now();
 
 			long diff = currentDate.getTime() - otpDate.getTime();
 			long diffMinutes = diff / (60 * 1000) % 60;

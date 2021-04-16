@@ -42,13 +42,6 @@ export class RoleListComponent implements OnInit {
       subtitle: 'Are you really sure to delete this record?'
     };
 
-    /* this.roleService.deleteRole(id).subscribe(data=>{
-
-    }, error=>{
-      console.log(error);
-      
-    }) */
-
     this.dialog.open(ConfirmationDialogComponent, { width: '26%', data: confirmationData, disableClose: true })
       .afterClosed().subscribe(okData => {
         if (okData) {

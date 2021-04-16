@@ -14,7 +14,7 @@ import com.prilax.lm.security.dto.RoleResponse;
 import com.prilax.lm.security.dto.RolesResponse;
 import com.prilax.lm.security.entity.ScRole;
 import com.prilax.lm.service.common.CommonService;
-import com.prilax.lm.util.ScUtil;
+import com.prilax.lm.util.LmUtil;
 
 @Service
 public class ScRoleService {
@@ -28,7 +28,7 @@ public class ScRoleService {
 
 		List<ScRole> roles = commonService.findAll(ScRole.class);
 
-		if (!ScUtil.isAllPresent(roles))
+		if (!LmUtil.isAllPresent(roles))
 			throw new NotFoundException("No role can be found !");
 
 		List<Role> dtoRoles = new ArrayList<>();
@@ -82,17 +82,17 @@ public class ScRoleService {
 
 		ScRole role = new ScRole();
 
-		if (ScUtil.isAllPresent(id))
+		if (LmUtil.isAllPresent(id))
 			role = commonService.findById(id, ScRole.class);
 
-		if (!ScUtil.isAllPresent(role))
+		if (!LmUtil.isAllPresent(role))
 			throw new NotFoundException("No role can be found !");
 
 		setDtoToRole(dtoRole, role);
 		commonService.save(role);
 
 		String message = "";
-		if (ScUtil.isAllPresent(id)) {
+		if (LmUtil.isAllPresent(id)) {
 			message = "Successfully updated the role's data";
 			res.setApiMessage(ApiUtil.createdMessage(message));
 		} else {
@@ -149,7 +149,7 @@ public class ScRoleService {
 
 		ScRole role = commonService.findById(id, ScRole.class);
 
-		if (!ScUtil.isAllPresent(role))
+		if (!LmUtil.isAllPresent(role))
 			throw new NotFoundException("No role can be found !");
 
 		Role dtoRole = setRoleToDto(role);
@@ -166,7 +166,7 @@ public class ScRoleService {
 
 		ScRole role = commonService.findById(id, ScRole.class);
 
-		if (!ScUtil.isAllPresent(role))
+		if (!LmUtil.isAllPresent(role))
 			throw new NotFoundException("No role can be found !");
 
 		commonService.delete(role);

@@ -47,7 +47,8 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

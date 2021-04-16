@@ -21,6 +21,8 @@ public class Customer implements Serializable {
 	private String status;
 
 	private String occupation;
+	
+	private String address;
 
 	private RecordAudit audit = new RecordAudit();
 
@@ -87,7 +89,13 @@ public class Customer implements Serializable {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-	
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 }

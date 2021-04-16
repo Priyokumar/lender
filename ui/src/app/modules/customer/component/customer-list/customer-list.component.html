@@ -1,0 +1,84 @@
+<div class="m-3">
+  <div class="row p-1 bg-gold">
+    <div class="col-md-6">
+      <span class="font-400 font-banner" style="line-height: 35px;">Customers</span>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-save" [routerLink]="['/customers/add']">
+        <mat-icon class="white-icon">add</mat-icon>&nbsp;Add Customers
+      </button>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-12 p-0 table-header mb-5">
+
+      <div class="no-shadow w-100">
+        <table mat-table [dataSource]="dataSource" matSort [ngStyle]="{'display': dataSource ? '': 'none'}">
+
+          <ng-container matColumnDef="customerId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer ID</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.customerId}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="mobileNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile No</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.mobileNo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.gender}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="occupation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Occupation</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.occupation}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.status}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.address}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row" class="text-right">
+              <mat-icon style="color: rgb(6, 80, 51); cursor: pointer;" [routerLink]="'/customers/'+row.id+'/edit'">edit
+              </mat-icon> &nbsp;
+              <mat-icon style="color: firebrick; cursor: pointer;" (click)="delete(row.id)">delete</mat-icon>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns;sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns ; let i = index;">
+          </tr>
+        </table>
+        <div class="d-flex justify-content-center align-items-center" style="height: 40vh;"
+          *ngIf="!dataSource || !dataSource.data">
+          <div>
+            <h4 class="font-grey font-300">No user to display.</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

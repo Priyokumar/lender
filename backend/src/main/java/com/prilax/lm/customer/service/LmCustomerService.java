@@ -13,7 +13,7 @@ import com.prilax.lm.dto.ActionResponse;
 import com.prilax.lm.dto.ApiUtil;
 import com.prilax.lm.dto.error.NotFoundException;
 import com.prilax.lm.service.common.CommonService;
-import com.prilax.lm.util.ScUtil;
+import com.prilax.lm.util.LmUtil;
 
 @Service
 public class LmCustomerService {
@@ -40,7 +40,7 @@ public class LmCustomerService {
 
 		LmCustomer customer = commonService.findById(id, LmCustomer.class);
 
-		if (!ScUtil.isAllPresent(customer))
+		if (!LmUtil.isAllPresent(customer))
 			throw new NotFoundException("No customer can be found !");
 
 		Customer customerDto = setCustomerToDto(customer);
@@ -53,11 +53,24 @@ public class LmCustomerService {
 		ActionResponse res = new ActionResponse();
 
 		LmCustomer customer = modelMapper.map(customerDto, LmCustomer.class);
+		
+		
+		if(LmUtil.isAllPresent(id)) {
+			LmCustomer customerOld = commonService.findById(id, LmCustomer.class);
+			customer.setId(id);
+			if(!LmUtil.isAllPresent(customerOld.getCustomerId())) {
+				customer.setCustomerId(LmUtil.getGeneratedNumber("CUST"));
+			} else {
+				customer.setCustomerId(customerOld.getCustomerId());
+			}
+		} else {
+			customer.setCustomerId(LmUtil.getGeneratedNumber("CUST"));
+		}
 		customer.setId(id);
 
 		commonService.save(customer);
 		String message = "";
-		if (ScUtil.isAllPresent(id)) {
+		if (LmUtil.isAllPresent(id)) {
 			message = "Successfully updated customer data";
 			res.setApiMessage(ApiUtil.okMessage(message));
 		} else {
@@ -74,7 +87,7 @@ public class LmCustomerService {
 
 		LmCustomer customer = commonService.findById(id, LmCustomer.class);
 
-		if (!ScUtil.isAllPresent(customer))
+		if (!LmUtil.isAllPresent(customer))
 			throw new NotFoundException("No customer can be found !");
 
 		commonService.delete(customer);

@@ -21,27 +21,30 @@ public class LmCustomer implements Serializable {
 	@GeneratedValue
 	@Column(name = "LM_ID")
 	private Long id;
-	
+
 	@Column(name = "CUSTOMER_ID")
 	private String customerId;
 
 	@Column(name = "NAME")
 	private String name;
-	
+
 	@Column(name = "MOBILE_NO")
 	private String mobileNo;
-	
+
 	@Column(name = "GENDER")
 	private String gender;
-	
+
 	@Column(name = "STATUS")
 	private String status;
-	
+
 	@Column(name = "OCCUPATION")
 	private String occupation;
-	
+
+	@Column(name = "address")
+	private String address;
+
 	@Embedded
-    private LmRecordAudit audit;
+	private LmRecordAudit audit;
 
 	public Long getId() {
 		return id;
@@ -106,7 +109,13 @@ public class LmCustomer implements Serializable {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-	
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 }

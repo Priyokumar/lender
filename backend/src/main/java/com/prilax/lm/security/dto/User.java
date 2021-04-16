@@ -15,6 +15,10 @@ public class User {
 	private String email;
 
 	private String mobile;
+	
+	private String gender;
+	
+	private String status;
 
 	private List<Role> roles;
 
@@ -74,6 +78,22 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class ScDateUtil {
+public class LmDateUtil {
 
 	public static final String DATE_FORMAT = "dd-MM-yyyy";
 	public static final String DATE_TIME_FORMAT = "dd-MM-yyyy  HH:mm:ss";
@@ -24,10 +24,10 @@ public class ScDateUtil {
 
 	public static String dateToString(Date date, String format) {
 
-		if (!ScUtil.isAllPresent(date))
+		if (!LmUtil.isAllPresent(date))
 			return null;
 
-		if (!ScUtil.isAllPresent(format))
+		if (!LmUtil.isAllPresent(format))
 			format = DATE_FORMAT_MONTH_FIRST;
 
 		String dateStr = null;
@@ -42,10 +42,10 @@ public class ScDateUtil {
 
 	public static Date stringToDate(String dateStr, String format) {
 
-		if (!ScUtil.isAllPresent(dateStr))
+		if (!LmUtil.isAllPresent(dateStr))
 			return null;
 
-		if (!ScUtil.isAllPresent(format))
+		if (!LmUtil.isAllPresent(format))
 			format = DATE_FORMAT_MONTH_FIRST;
 
 		Date date = null;
