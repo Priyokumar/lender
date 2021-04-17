@@ -4,14 +4,8 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AccountStatuses, Genders, LeadStatuses, ProductType, YesNo } from 'src/app/constant';
-import { ICustomer } from 'src/app/modules/customer/customer.model';
-import { CustomerListDialogComponent } from 'src/app/modules/dialog/components/customer-list-dialog/customer-list-dialog.component';
 import { LeadListDialogComponent } from 'src/app/modules/dialog/components/lead-list-dialog/lead-list-dialog.component';
-import { ProductListDialogComponent } from 'src/app/modules/dialog/components/product-list-dialog/product-list-dialog.component';
 import { ILead } from 'src/app/modules/lead/lead.model';
-import { LeadService } from 'src/app/modules/lead/service/lead.service';
-import { IProduct } from 'src/app/modules/product/product.model';
-import { ProductService } from 'src/app/modules/product/service/product.service';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IActionResponse, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
 import { IAccount } from '../../account.model';
@@ -34,7 +28,6 @@ export class AccountCreateEditComponent implements OnInit {
 
   idCtrl = new FormControl('', null);
   accountNoCtrl = new FormControl('', Validators.required);
-  amountCtrl = new FormControl('', Validators.required);
   repaymentDateCtrl = new FormControl('', Validators.required);
   closingBalanceCtrl = new FormControl('', Validators.required);
   statusCtrl = new FormControl('', Validators.required);
@@ -64,8 +57,6 @@ export class AccountCreateEditComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private leadService: LeadService,
-    private productService: ProductService,
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -75,7 +66,6 @@ export class AccountCreateEditComponent implements OnInit {
     this.form = new FormGroup({
       idCtrl: this.idCtrl,
       accountNoCtrl: this.accountNoCtrl,
-      amountCtrl: this.amountCtrl,
       repaymentDateCtrl: this.repaymentDateCtrl,
       closingBalanceCtrl: this.closingBalanceCtrl,
       statusCtrl: this.statusCtrl,
@@ -121,6 +111,7 @@ export class AccountCreateEditComponent implements OnInit {
     this.mobileNoCtrl.disable();
     this.interestCtrl.disable();
     this.tenureCtrl.setValue(0);
+    this.repaymentDateCtrl.disable();
 
   }
 
@@ -140,13 +131,13 @@ export class AccountCreateEditComponent implements OnInit {
 
     this.idCtrl.setValue(account.id);
     this.accountNoCtrl.setValue(account.accountNo);
-    this.amountCtrl.setValue(account.amount);
-    this.repaymentDateCtrl.setValue(account.repaymentDate);
+    this.repaymentDateCtrl.setValue(new Date(account.repaymentDate));
     this.closingBalanceCtrl.setValue(account.closingBalance);
     this.statusCtrl.setValue(account.status);
 
 
     if (account.lead) {
+      this.selectedLead = account.lead;
       this.leadIdCtrl.setValue(account.lead.leadId);
       this.requestedAmountCtrl.setValue(account.lead.requestedAmount);
       this.monthlyInterestCtrl.setValue(account.lead.monthlyInterest);
@@ -186,7 +177,6 @@ export class AccountCreateEditComponent implements OnInit {
       id: this.id,
       status: this.statusCtrl.value,
       accountNo: this.accountNoCtrl.value,
-      amount: this.amountCtrl.value,
       closingBalance: this.closingBalanceCtrl.value,
       emis: [],
       lead: this.selectedLead,
@@ -235,15 +225,31 @@ export class AccountCreateEditComponent implements OnInit {
   selectLead() {
     this.dialog.open(LeadListDialogComponent, { width: "65%" }).afterClosed().subscribe(lead => {
       if (lead) {
+
+        this.selectedLead = lead;
+
         this.leadIdCtrl.setValue(lead.leadId);
         this.requestedAmountCtrl.setValue(lead.requestedAmount);
         this.monthlyInterestCtrl.setValue(lead.monthlyInterest);
         this.emiCtrl.setValue(lead.emi);
         this.leadStatusCtrl.setValue(lead.status);
         this.tenureCtrl.setValue(lead.tenure);
+        if (lead.product) {
+          this.interestCtrl.setValue(lead.product.interest);
+          this.securedProduct = lead.product.securedProduct;
+          this.frequencyCtrl.setValue(lead.product.frequency);
+          this.productNameCtrl.setValue(lead.product.name);
+        }
+
+        if (lead.customer) {
+          this.customerNameCtrl.setValue(lead.customer.name);
+          this.customerIdCtrl.setValue(lead.customer.customerId);
+          this.genderCtrl.setValue(lead.customer.gender);
+          this.mobileNoCtrl.setValue(lead.customer.mobileNo);
+        }
       }
+
     });
   }
-
 
 }

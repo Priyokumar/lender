@@ -64,3 +64,14 @@ export const ProductTypes: KeyVal[] = [
     { key: ProductType.LOAN, val: ProductType.LOAN },
     { key: ProductType.SENDOI, val: ProductType.SENDOI }
 ]
+
+export class RepaymentStatus {
+    static PAID = "Paid";
+    static NOT_PAID = "Not Paid";
+    static PARTIALLY_PAID = "Partially Paid";
+}
+export const RepaymentStatuses: KeyVal[] = [
+    { key: RepaymentStatus.PAID, val: RepaymentStatus.PAID },
+    { key: RepaymentStatus.NOT_PAID, val: RepaymentStatus.NOT_PAID },
+    { key: RepaymentStatus.PARTIALLY_PAID, val: RepaymentStatus.PARTIALLY_PAID }
+]

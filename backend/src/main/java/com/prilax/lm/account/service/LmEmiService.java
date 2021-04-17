@@ -5,13 +5,35 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prilax.lm.account.dto.Emi;
+import com.prilax.lm.account.entity.LmAccount;
 import com.prilax.lm.account.entity.LmEmi;
+import com.prilax.lm.account.repository.LmEmiRepository;
 import com.prilax.lm.account.vo.LmEmiStatus;
 
 @Service
 public class LmEmiService {
+	
+	@Autowired
+	private LmEmiRepository emiRepository;
+	
+	ModelMapper modelMapper = new ModelMapper();
+	
+	public List<Emi> findEmiListByAccountNo(String accountNo) {
+		
+		List<LmEmi> emis = emiRepository.findListByAccountNo(accountNo);
+		
+		List<Emi> emisDto = new ArrayList<>();
+		emis.forEach(emi -> {
+			Emi emiDto = modelMapper.map(emi, Emi.class);
+			emisDto.add(emiDto);
+		});
+		return emisDto;
+	}
 
 	public List<LmEmi> generateEmi(Double amount, Integer tenure, Double interest, Date dateOfCreation) {
 
@@ -44,6 +66,10 @@ public class LmEmiService {
 		Double monthlyInterest = amount * (interest / 100);
 
 		return monthlyInterest;
+	}
+	
+	public Double updateClosingBalance(LmAccount account) {
+		return 0.0;
 	}
 
 }

@@ -49,7 +49,7 @@
           <ng-container matColumnDef="tenure">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tenure(in months)</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.tenure}}
+              {{row.tenure ? row.tenure : 'NA'}}
             </td>
           </ng-container>
 

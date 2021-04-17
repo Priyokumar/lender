@@ -12,6 +12,7 @@ import com.prilax.lm.dto.ApiUtil;
 import com.prilax.lm.dto.error.NotFoundException;
 import com.prilax.lm.lead.dto.Lead;
 import com.prilax.lm.lead.entity.LmLead;
+import com.prilax.lm.lead.repository.LmLeadRepository;
 import com.prilax.lm.service.common.CommonService;
 import com.prilax.lm.util.LmUtil;
 
@@ -21,11 +22,26 @@ public class LmLeadService {
 	@Autowired
 	private CommonService commonService;
 
+	@Autowired
+	private LmLeadRepository leadRepository;
+
 	ModelMapper modelMapper = new ModelMapper();
 
-	public List<Lead> findAllLeads() {
+	public List<Lead> findAllLeads(String leadId, String status, String customerId, String mobileNo) {
 
-		List<LmLead> leads = commonService.findAll(LmLead.class);
+		List<LmLead> leads = new ArrayList<LmLead>();
+
+		if (LmUtil.isAllPresent(leadId)) {
+			leads = leadRepository.findByLeadId(leadId);
+		} else if (LmUtil.isAllPresent(status)) {
+			leads = leadRepository.findByStatus(status);
+		} else if (LmUtil.isAllPresent(customerId)) {
+			leads = leadRepository.findByCustomerId(customerId);
+		} else if (LmUtil.isAllPresent(mobileNo)) {
+			leads = leadRepository.findByMobileNo(mobileNo);
+		} else {
+			leads = commonService.findAll(LmLead.class);
+		}
 
 		List<Lead> leadsDto = new ArrayList<>();
 		leads.forEach(lead -> {
@@ -53,12 +69,11 @@ public class LmLeadService {
 		ActionResponse res = new ActionResponse();
 
 		LmLead lead = modelMapper.map(leadDto, LmLead.class);
-		
-		
-		if(LmUtil.isAllPresent(id)) {
+
+		if (LmUtil.isAllPresent(id)) {
 			LmLead leadOld = commonService.findById(id, LmLead.class);
 			lead.setId(id);
-			if(!LmUtil.isAllPresent(leadOld.getLeadId())) {
+			if (!LmUtil.isAllPresent(leadOld.getLeadId())) {
 				lead.setLeadId(LmUtil.getGeneratedNumber("LEAD"));
 			} else {
 				lead.setLeadId(leadOld.getLeadId());

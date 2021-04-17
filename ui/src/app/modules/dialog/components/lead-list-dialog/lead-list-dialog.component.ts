@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialogRef } from '@angular/material';
+import { LeadStatus } from 'src/app/constant';
 import { ILead } from 'src/app/modules/lead/lead.model';
 import { LeadService } from 'src/app/modules/lead/service/lead.service';
 
@@ -20,11 +21,11 @@ export class LeadListDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllLeads();
+    this.getLeads();
   }
 
-  getAllLeads() {
-    this.leadService.getAllLeads().subscribe(data => {
+  getLeads() {
+    this.leadService.getLeads({status: LeadStatus.QUALIFIED}).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     }, error => {
       console.log(error);

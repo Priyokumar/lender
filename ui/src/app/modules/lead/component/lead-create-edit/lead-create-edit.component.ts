@@ -134,6 +134,7 @@ export class LeadCreateEditComponent implements OnInit {
       this.frequencyCtrl.setValue(lead.product.frequency);
       this.productNameCtrl.setValue(lead.product.name);
       this.selectedProduct = lead.product;
+      this.validateFormData();
     }
 
     if (lead.customer) {
@@ -229,25 +230,7 @@ export class LeadCreateEditComponent implements OnInit {
         this.frequencyCtrl.setValue(product.frequency);
         this.productNameCtrl.setValue(product.name);
         this.calculateInterest();
-
-        if (this.selectedProduct.type === ProductType.LOAN) {
-         
-          this.monthlyInterestCtrl.setValue(null);
-          this.monthlyInterestCtrl.clearValidators();
-          this.tenureCtrl.setValidators(Validators.required);
-          this.emiCtrl.setValidators(Validators.required);
-       
-        } else if (this.selectedProduct.type === ProductType.SENDOI) {
-         
-          this.tenureCtrl.setValue(null);
-          this.emiCtrl.setValue(null);
-          this.tenureCtrl.clearValidators();
-          this.emiCtrl.clearValidators();
-          this.tenureCtrl.updateValueAndValidity();
-          this.emiCtrl.updateValueAndValidity();
-          this.monthlyInterestCtrl.setValidators(Validators.required);
-
-        }
+        this.validateFormData();
       }
     });
   }
@@ -279,6 +262,27 @@ export class LeadCreateEditComponent implements OnInit {
       this.monthlyInterestCtrl.setValue(monInt);
     }
 
+  }
+
+  private validateFormData(){
+    if (this.selectedProduct.type === ProductType.LOAN) {
+         
+      this.monthlyInterestCtrl.setValue(null);
+      this.monthlyInterestCtrl.clearValidators();
+      this.tenureCtrl.setValidators(Validators.required);
+      this.emiCtrl.setValidators(Validators.required);
+   
+    } else if (this.selectedProduct.type === ProductType.SENDOI) {
+     
+      this.tenureCtrl.setValue(null);
+      this.emiCtrl.setValue(null);
+      this.tenureCtrl.clearValidators();
+      this.emiCtrl.clearValidators();
+      this.tenureCtrl.updateValueAndValidity();
+      this.emiCtrl.updateValueAndValidity();
+      this.monthlyInterestCtrl.setValidators(Validators.required);
+
+    }
   }
 
 }

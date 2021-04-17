@@ -1,6 +1,7 @@
 package com.prilax.lm.account.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -63,20 +64,28 @@ public class LmAccountService {
 			LmAccount accountOld = commonService.findById(id, LmAccount.class);
 			account.setId(id);
 			if (!LmUtil.isAllPresent(accountOld.getAccountNo())) {
-				account.setAccountNo(LmUtil.getGeneratedNumber("ACC"));
+				account.setAccountNo(LmUtil.getGeneratedNumber("AC"));
 			} else {
 				account.setAccountNo(accountOld.getAccountNo());
 			}
 		} else {
-			account.setAccountNo(LmUtil.getGeneratedNumber("ACC"));
+			account.setAccountNo(LmUtil.getGeneratedNumber("AC"));
 
 			if (account.getLead().getProduct().getType().equals(LmProductType.LOAN)) {
-				List<LmEmi> emis = emiService.generateEmi(account.getAmount(), account.getLead().getTenure(),
+				List<LmEmi> emis = emiService.generateEmi(account.getLead().getRequestedAmount(), account.getLead().getTenure(),
 						account.getLead().getProduct().getInterest(), account.getDateOfCreation());
 				account.setEmis(emis);
+				account.setRepaymentDate(emis.get(0).getDueDate());
+			} else if (account.getLead().getProduct().getType().equals(LmProductType.SENDOI)) {
+				
+				Calendar calender = Calendar.getInstance();
+				calender.setTime(account.getDateOfCreation());
+				calender.add(Calendar.MONTH, 1);
+				account.setRepaymentDate(calender.getTime());
 			}
 
 		}
+		
 		account.setId(id);
 
 		commonService.save(account);

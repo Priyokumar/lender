@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RepaymentModule } from './modules/repayment/repayment.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -8,7 +9,8 @@ const routes: Routes = [
   { path: 'customers', loadChildren: './modules/customer/customer.module#CustomerModule' },
   { path: 'products', loadChildren: './modules/product/product.module#ProductModule' },
   { path: 'leads', loadChildren: './modules/lead/lead.module#LeadModule' },
-  { path: 'accounts', loadChildren: './modules/account/account.module#AccountModule' }
+  { path: 'accounts', loadChildren: './modules/account/account.module#AccountModule' },
+  { path: 'repayments', loadChildren: './modules/repayment/repayment.module#RepaymentModule' }
 ];
 
 @NgModule({

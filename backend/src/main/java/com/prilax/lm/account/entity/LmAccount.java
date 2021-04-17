@@ -36,9 +36,6 @@ public class LmAccount implements Serializable {
 
 	@Column(name = "ACCOUNT_NO")
 	private String accountNo;
-
-	@Column(name = "AMOUNT")
-	private Double amount;
 	
 	@Column(name = "DATE_OF_CREATION")
 	private Date dateOfCreation = new Date();
@@ -78,14 +75,6 @@ public class LmAccount implements Serializable {
 
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
-	}
-
-	public Double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Double amount) {
-		this.amount = amount;
 	}
 
 	public Date getDateOfCreation() {

@@ -11,6 +11,7 @@ import { DialogModule } from '../dialog/dialog.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { LeadService } from '../lead/service/lead.service';
 import { ProductService } from '../product/service/product.service';
+import { EmiService } from './service/emi.service';
 
 const routes: Routes = [
   { path: '', component: AccountListComponent, canActivate: [CheckingLoginGuardService] },
@@ -33,6 +34,6 @@ const routes: Routes = [
     AccountCreateEditComponent,
     AccountViewComponent
   ],
-  providers: [AccountService, LeadService, ProductService]
+  providers: [AccountService, LeadService, ProductService, EmiService],
 })
 export class AccountModule { }

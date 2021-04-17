@@ -19,7 +19,7 @@
           <ng-container matColumnDef="accountNo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No.</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.accountNo}}</td>
+              <a [routerLink]="'/accounts/'+row.id+'/view'">{{row.accountNo}}</a></td>
           </ng-container>
 
           <ng-container matColumnDef="customerName">
@@ -37,7 +37,7 @@
           <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Loan Amount</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.amount}}</td>
+              {{row.lead?.requestedAmount}}</td>
           </ng-container>
 
           <ng-container matColumnDef="interest">
@@ -55,10 +55,10 @@
           <ng-container matColumnDef="tenure">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tenure(in months)</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.tenure}}
+              {{row.lead?.tenure ? row.lead.tenure : 'NA'}}
             </td>
           </ng-container>
-
+ 
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let row" class="name-class">
@@ -69,7 +69,7 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let row" class="text-right">
-              <mat-icon style="color: rgb(6, 80, 51); cursor: pointer;" [routerLink]="'/leads/'+row.id+'/edit'">edit
+              <mat-icon style="color: rgb(6, 80, 51); cursor: pointer;" [routerLink]="'/accounts/'+row.id+'/edit'">edit
               </mat-icon> &nbsp;
               <mat-icon style="color: firebrick; cursor: pointer;" (click)="delete(row.id)">delete</mat-icon>
           </ng-container>

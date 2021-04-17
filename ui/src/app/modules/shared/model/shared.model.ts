@@ -1,34 +1,18 @@
 import { MatSnackBarConfig } from '@angular/material';
 
-export const adminSideNavs: ISideNav[] = [
-
-    { title: 'Dashboard', path: '/admin/dashboard', icon: 'home', hasSubmenu: false, submenu: [] },
-    {
-        title: 'Employees', path: '', icon: 'cloud_circle', hasSubmenu: true, submenu:
-            [
-                { title: 'Employee List', path: '/admin/employees', icon: 'dashboard', hasSubmenu: false, submenu: [] }
-            ]
-    },
-    {
-        title: 'Student Management', path: '', icon: 'wc', hasSubmenu: true, submenu:
-            [
-                { title: 'Student', path: '/admin/students', icon: 'dashboard', hasSubmenu: false, submenu: [] },
-                { title: 'Admission', path: '/admin/students/admissions', icon: 'dashboard', hasSubmenu: false, submenu: [] }
-            ]
-    }
-];
-
 export const allSideNavs: ISideNav[] = [
 
     { title: 'Customer', path: '/customers', icon: 'settings_accessibility', hasSubmenu: false, submenu: [] },
     { title: 'Lead', path: '/leads', icon: 'integration_instructions', hasSubmenu: false, submenu: [] },
-    { title: 'Loan Account', path: '/accounts', icon: 'manage_accounts', hasSubmenu: false, submenu: [] },
-    { title: 'Product', path: '/products', icon: 'shopping_basket', hasSubmenu: false, submenu: [] },
+    { title: 'Account', path: '/accounts', icon: 'assignment_ind', hasSubmenu: false, submenu: [] },
+    { title: 'Repayment', path: '/repayments', icon: 'settings_backup_restore', hasSubmenu: false, submenu: [] },
+    
     {
-        title: 'Security', path: '', icon: 'security', hasSubmenu: true, submenu:
+        title: 'Settings', path: '', icon: 'settings_applications', hasSubmenu: true, submenu:
             [
                 { title: 'Role', path: '/security/roles', icon: 'dashboard', hasSubmenu: false, submenu: [] },
                 { title: 'User', path: '/security/users', icon: 'dashboard', hasSubmenu: false, submenu: [] },
+                { title: 'Product', path: '/products', icon: 'shopping_basket', hasSubmenu: false, submenu: [] },
             ]
     }
 ];
@@ -68,6 +52,8 @@ export class ApiEndpoint {
     public static PRODUCTS = ApiEndpoint.API_BASE_URL + '/products';
     public static LEADS = ApiEndpoint.API_BASE_URL + '/leads';
     public static ACCOUNTS = ApiEndpoint.API_BASE_URL + '/accounts';
+    public static EMI_S = ApiEndpoint.API_BASE_URL + '/emis';
+    public static REPAYMENTS = ApiEndpoint.API_BASE_URL + '/repayments';
     static DOCUMENT: string;
 
 }

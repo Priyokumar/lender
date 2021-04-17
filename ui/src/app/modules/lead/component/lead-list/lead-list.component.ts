@@ -30,7 +30,7 @@ export class LeadListComponent implements OnInit {
   }
 
   getAllLeads() {
-    this.leadService.getAllLeads().subscribe(data => {
+    this.leadService.getLeads().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     }, error => {
       console.log(error);

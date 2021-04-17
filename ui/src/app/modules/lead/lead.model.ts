@@ -12,3 +12,10 @@ export interface ILead {
     customer: ICustomer;
     product: IProduct;
 }
+
+export interface ILeadQueryParam {
+    leadId?: string;
+    status?: string;
+    customerId?: string;
+    mobileNo?: string;
+}

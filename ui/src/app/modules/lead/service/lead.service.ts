@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoint, IActionResponse } from '../../shared/model/shared.model';
-import { ILead } from '../lead.model';
+import { ILead, ILeadQueryParam } from '../lead.model';
 
 @Injectable()
 export class LeadService {
@@ -11,10 +11,14 @@ export class LeadService {
     private http: HttpClient
   ) { }
 
-  getAllLeads(): Observable<ILead[]> {
-    return this.http.get<any>(ApiEndpoint.LEADS);
+  getLeads(params?: ILeadQueryParam): Observable<ILead[]> {
+    if(params){
+      return this.http.get<any>(ApiEndpoint.LEADS, { params: params as any });
+    } else{
+      return this.http.get<any>(ApiEndpoint.LEADS);
+    }
   }
-
+  //leadId:"LEAD2021422483760"
   getLeadById(id: number): Observable<ILead> {
     return this.http.get<any>(ApiEndpoint.LEADS + "/" + id);
   }

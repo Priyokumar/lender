@@ -6,8 +6,11 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.prilax.lm.entity.LmRecordAudit;
@@ -31,6 +34,10 @@ public class LmEmi implements Serializable {
 
 	@Column(name = "STATUS")
 	private String status;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ACCOUNT_ID")
+	private LmAccount account;
 
 	@Embedded
 	private LmRecordAudit audit;
@@ -73,6 +80,14 @@ public class LmEmi implements Serializable {
 
 	public void setAudit(LmRecordAudit audit) {
 		this.audit = audit;
+	}
+
+	public LmAccount getAccount() {
+		return account;
+	}
+
+	public void setAccount(LmAccount account) {
+		this.account = account;
 	}
 
 }

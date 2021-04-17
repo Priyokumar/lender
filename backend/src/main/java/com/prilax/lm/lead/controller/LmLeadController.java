@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prilax.lm.dto.ActionResponse;
@@ -24,8 +25,13 @@ public class LmLeadController {
 	private LmLeadService leadService;
 
 	@GetMapping
-	public List<Lead> findAllLeads() {
-		return leadService.findAllLeads();
+	public List<Lead> findAllLeads(
+			@RequestParam(name = "leadId", required = false) String leadId,
+			@RequestParam(name = "status", required = false) String status,
+			@RequestParam(name = "customerId", required = false) String customerId,
+			@RequestParam(name = "mobileNo", required = false) String mobileNo
+			) {
+		return leadService.findAllLeads(leadId, status, customerId, mobileNo);	
 	}
 
 	@GetMapping(value = "/{id}")

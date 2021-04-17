@@ -12,8 +12,6 @@ public class Account {
 	private Long id;
 
 	private String accountNo;
-
-	private Double amount;
 	
 	private Date repaymentDate;
 	
@@ -41,14 +39,6 @@ public class Account {
 
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
-	}
-
-	public Double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Double amount) {
-		this.amount = amount;
 	}
 
 	public Date getRepaymentDate() {
