@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoint, IActionResponse } from '../../shared/model/shared.model';
-import { IAccount } from '../account.model';
+import { IAccount, IAccountQueryParams } from '../account.model';
 
 @Injectable()
 export class AccountService {
@@ -11,8 +11,14 @@ export class AccountService {
     private http: HttpClient
   ) { }
 
-  getAllAccounts(): Observable<IAccount[]> {
-    return this.http.get<any>(ApiEndpoint.ACCOUNTS);
+  getAllAccounts(params?: IAccountQueryParams): Observable<IAccount[]> {
+
+    if (params) {
+      return this.http.get<any>(ApiEndpoint.ACCOUNTS, { params: params as any });
+    } else {
+      return this.http.get<any>(ApiEndpoint.ACCOUNTS);
+    }
+
   }
 
   getAccountById(id: number): Observable<IAccount> {

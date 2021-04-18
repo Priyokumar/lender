@@ -1,3 +1,205 @@
-<p>
-  repayment-create-edit works!
-</p>
+<div class="form-min-height m-3 bg-white">
+  <div class="row p-1 bg-gold">
+    <div class="col-md-6">
+      <span class="font-400 font-banner" style="line-height: 35px;">Repayment</span>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-cancel" routerLink="/repayments">
+        <mat-icon class="white-icon">clear</mat-icon>&nbsp;Cancel
+      </button>
+      <button class="btn btn-save" (click)="save()" [disabled]='!form.valid'>
+        <mat-icon class="white-icon">save_alt</mat-icon>&nbsp;Save Repayment
+      </button>
+    </div>
+  </div>
+
+  <div [ngClass]="['pt-1','pr-5','pl-5']">
+
+    <div class="row pt-3">
+      <div class="col-md-12 mt-3 mb-3">
+        <p style="font-weight: bold; font-size: 14px;">Account Info</p>
+        <hr>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Account Number</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="accountNoCtrl">
+          <button mat-button matSuffix mat-icon-button (click)="selectAccount()">
+            <mat-icon>search</mat-icon>
+          </button>
+          <mat-error *ngIf="accountNoCtrl.hasError('required')">
+            Account Number is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row pt-3" *ngIf="selectedAccount"> 
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Loan Amount</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="requestedAmountCtrl">
+          <mat-error *ngIf="requestedAmountCtrl.hasError('required')">
+            Loan Amount is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.LOAN">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Tenure(in months)</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="tenureCtrl">
+          <mat-error *ngIf="tenureCtrl.hasError('required')">
+            Tenure(in months) is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.SENDOI">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Monthly Interest</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="monthlyInterestCtrl">
+          <mat-error *ngIf="monthlyInterestCtrl.hasError('required')">
+            Monthly Interest is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.LOAN">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>EMI Amount</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="emiAmountCtrl">
+          <button mat-button matSuffix mat-icon-button (click)="selectEmi()">
+            <mat-icon>search</mat-icon>
+          </button>
+          <mat-error *ngIf="emiAmountCtrl.hasError('required')">
+            EMI Amount is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.LOAN">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>EMI Due Date</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="emiDueDateCtrl">
+          <mat-error *ngIf="emiDueDateCtrl.hasError('required')">
+            EMI Due Date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.LOAN">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>EMI Status</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="emiStatusCtrl">
+          <mat-error *ngIf="emiStatusCtrl.hasError('required')">
+            EMI Status is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12">
+        <p style="font-weight: bold; font-size: 14px;">Customer Info</p>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Customer Name</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="customerNameCtrl">
+          <mat-error *ngIf="customerNameCtrl.hasError('required')">
+            Customer is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Gender</mat-label>
+          <mat-select [formControl]="genderCtrl">
+            <mat-option *ngFor="let gender of genders" [value]="gender.val">{{gender.val}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12 mt-3 mb-3">
+        <p style="font-weight: bold; font-size: 14px;">Product Info</p>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Product Name</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="productNameCtrl">
+          <mat-error *ngIf="productNameCtrl.hasError('required')">
+            Product Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Interest % </mat-label>
+          <input type="number" matInput placeholder="Placeholder" [formControl]="interestCtrl">
+          <mat-error *ngIf="interestCtrl.hasError('required')">
+            Interest is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Frequency</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="frequencyCtrl">
+          <mat-error *ngIf="frequencyCtrl.hasError('required')">
+            Frequency is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12 mt-3 mb-3">
+        <p style="font-weight: bold; font-size: 14px;">Repayment Info</p>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Repayment ID</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="repaymentIdCtrl">
+          <mat-error *ngIf="repaymentIdCtrl.hasError('required')">
+            Repayment ID is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Date Of Payment</mat-label>
+          <input matInput [matDatepicker]="repaymentDatePicker" placeholder="Repayment Date"
+            [formControl]="dateOfPaymentCtrl">
+          <mat-datepicker-toggle matSuffix [for]="repaymentDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #repaymentDatePicker></mat-datepicker>
+          <mat-error *ngIf="dateOfPaymentCtrl.hasError('required')">
+            Date Of Payment is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Amount Paid</mat-label>
+          <input type="number" matInput placeholder="Placeholder" [formControl]="amountPaidCtrl">
+          <mat-error *ngIf="amountPaidCtrl.hasError('required')">
+            Amount Paid is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" *ngIf="selectedAccount?.lead?.product?.type === productType.SENDOI">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Due Amount</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="dueAmountCtrl">
+          <mat-error *ngIf="dueAmountCtrl.hasError('required')">
+            Due Amount is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Status</mat-label>
+          <mat-select [formControl]="statusCtrl">
+            <mat-option *ngFor="let status of repaymentStatuses" [value]="status.val">{{status.val}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="statusCtrl.hasError('required')">
+            Status ID is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

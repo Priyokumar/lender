@@ -105,7 +105,9 @@ export class AccountViewComponent implements OnInit {
   }
 
   viewEmiList() {
-    this.dialog.open(EmiListDialogComponent, { width: "65%", data: this.account.accountNo });
+    this.dialog.open(EmiListDialogComponent, { width: "65%", data: {
+      accountNo: this.account.accountNo
+    } });
   }
 
 }

@@ -13,12 +13,12 @@ export class EmiListDialogComponent implements OnInit {
   public errorMessage: string;
   public columns: string[] = ['emiAmount', 'dueDate', 'status'];
   public dataSource: MatTableDataSource<IEmi>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     public dialogRef: MatDialogRef<EmiListDialogComponent>,
     private emiService: EmiService,
-    @Inject(MAT_DIALOG_DATA) public accountNo: string
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
@@ -26,7 +26,8 @@ export class EmiListDialogComponent implements OnInit {
   }
 
   getEmiList() {
-    this.emiService.getEmiList(this.accountNo).subscribe(data => {
+
+    this.emiService.getEmiList(this.data.accountNo).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     }, error => {
@@ -36,6 +37,13 @@ export class EmiListDialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  select(emi: IEmi) {
+    if (!this.data.selectable) {
+      return;
+    }
+    this.dialogRef.close(emi);
   }
 
 }

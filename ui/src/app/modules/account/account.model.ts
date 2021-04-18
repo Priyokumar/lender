@@ -17,3 +17,8 @@ export interface IEmi {
     dueDate: Date;
     status: String;
 }
+
+export interface IAccountQueryParams {
+    accountNo?: string;
+    status?: string;
+}

@@ -62,6 +62,7 @@ public class LmAccountService {
 
 		if (LmUtil.isAllPresent(id)) {
 			LmAccount accountOld = commonService.findById(id, LmAccount.class);
+			account.setEmis(accountOld.getEmis());
 			account.setId(id);
 			if (!LmUtil.isAllPresent(accountOld.getAccountNo())) {
 				account.setAccountNo(LmUtil.getGeneratedNumber("AC"));

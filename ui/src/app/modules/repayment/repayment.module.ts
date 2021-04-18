@@ -8,6 +8,8 @@ import { CheckingLoginGuardService } from '../auth/services/checking-login-guard
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
 import { AccountService } from '../account/service/account.service';
+import { DialogModule } from '../dialog/dialog.module';
+import { EmiService } from '../account/service/emi.service';
 
 const routes: Routes = [
   { path: '', component: RepaymentListComponent, canActivate: [CheckingLoginGuardService] },
@@ -21,9 +23,10 @@ const routes: Routes = [
     MaterialModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogModule
   ],
   declarations: [RepaymentListComponent, RepaymentCreateEditComponent],
-  providers: [RepaymentService, AccountService]
+  providers: [RepaymentService, AccountService, EmiService]
 })
 export class RepaymentModule { }
