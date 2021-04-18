@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData).subscribe(data => {
       this.authService.setAuthToken(data.token);
       this.authService.setUserDataToLocalStorage();
-      this.router.navigate(['/security/roles']);
+      this.router.navigate(['/dashboard']);
       this.authService.sendLoginSignal(true);
     }, error => {
       console.log(error);

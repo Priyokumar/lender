@@ -17,7 +17,7 @@ constructor(
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if(route.component === LoginComponent){
       if(this.authService.getUserDataFromLocalStorage()){
-        this.router.navigate(["/security/roles"]);
+        this.router.navigate(["/dashboard"]);
         this.authService.sendLoginSignal(true);
       }else{
         this.authService.sendLoginSignal(false);

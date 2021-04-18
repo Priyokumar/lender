@@ -61,7 +61,7 @@ export class ProductType {
     static SENDOI = "Sendoi";
 }
 export const ProductTypes: KeyVal[] = [
-    { key: ProductType.LOAN, val: ProductType.LOAN },
+    // { key: ProductType.LOAN, val: ProductType.LOAN },
     { key: ProductType.SENDOI, val: ProductType.SENDOI }
 ]
 

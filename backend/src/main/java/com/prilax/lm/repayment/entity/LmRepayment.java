@@ -43,7 +43,7 @@ public class LmRepayment implements Serializable {
 	@Column(name = "STATUS")
 	private String status;
 
-	@OneToOne(targetEntity = LmAccount.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = false)
+	@OneToOne(targetEntity = LmAccount.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
 	@JoinColumn(name = "LEAD_ID")
 	private LmAccount account;
 

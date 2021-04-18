@@ -59,17 +59,15 @@ public class LmRepaymentService {
 			LmRepayment repaymentOld = commonService.findById(id, LmRepayment.class);
 			repayment.setId(id);
 			if (!LmUtil.isAllPresent(repaymentOld.getRepaymentId())) {
-				repayment.setRepaymentId(LmUtil.getGeneratedNumber("REPMNT"));
+				repayment.setRepaymentId(LmUtil.getGeneratedNumber("REPAY"));
 			} else {
 				repayment.setRepaymentId(repaymentOld.getRepaymentId());
 			}
 		} else {
-			repayment.setRepaymentId(LmUtil.getGeneratedNumber("REPMNT"));
+			repayment.setRepaymentId(LmUtil.getGeneratedNumber("REPAY"));
 		}
+		
 		if (repayment.getAccount().getLead().getProduct().getType().equals(LmProductType.LOAN)) {
-			
-			
-			
 		}
 		repayment.setId(id);
 

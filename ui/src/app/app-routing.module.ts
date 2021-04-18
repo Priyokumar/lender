@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RepaymentModule } from './modules/repayment/repayment.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', loadChildren: './modules/auth/auth.module#AuthModule' },
+  { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' },
   { path: 'security', loadChildren: './modules/security/security.module#SecurityModule' },
   { path: 'customers', loadChildren: './modules/customer/customer.module#CustomerModule' },
   { path: 'products', loadChildren: './modules/product/product.module#ProductModule' },
