@@ -17,7 +17,7 @@
 
     <div class="row pt-3">
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Name</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="nameCtrl">
           <mat-error *ngIf="nameCtrl.hasError('required')">
@@ -26,7 +26,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Description</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="descriptionCtrl">
           <mat-error *ngIf="descriptionCtrl.hasError('required')">

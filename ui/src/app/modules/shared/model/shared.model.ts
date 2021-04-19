@@ -55,6 +55,8 @@ export class ApiEndpoint {
     public static ACCOUNTS = ApiEndpoint.API_BASE_URL + '/accounts';
     public static EMI_S = ApiEndpoint.API_BASE_URL + '/emis';
     public static REPAYMENTS = ApiEndpoint.API_BASE_URL + '/repayments';
+    public static DASHBOARD = ApiEndpoint.API_BASE_URL + '/dashboard';
+    
     static DOCUMENT: string;
 
 }

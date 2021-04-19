@@ -20,7 +20,8 @@ import {
   MatSortModule,
   MatProgressBarModule,
   MatChipsModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatDividerModule
 } from '@angular/material';
 
 @NgModule({
@@ -50,7 +51,8 @@ import {
     MatSortModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }

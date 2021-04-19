@@ -15,14 +15,14 @@
 
   <div [ngClass]="['pt-1','pr-5','pl-5']">
 
-    <div class="row pt-3">
+    <div class="row pt-3 mb-4 pb-4">
       <div class="col-md-12 mt-3 mb-3">
-        <p style="font-weight: bold; font-size: 14px;">Lead Info</p>
-        <hr>
+        <p class="subtitle">Lead Info</p>
+        <mat-divider></mat-divider>
       </div>
 
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Lead ID</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="leadIdCtrl">
           <button mat-button matSuffix mat-icon-button  (click)="selectLead()">
@@ -34,7 +34,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Lead Status</mat-label>
           <mat-select [formControl]="leadStatusCtrl">
             <mat-option *ngFor="let leadStatus of leadStatuses" [value]="leadStatus.val">{{leadStatus.val}}</mat-option>
@@ -45,7 +45,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Requested Amount</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="requestedAmountCtrl">
           <mat-error *ngIf="requestedAmountCtrl.hasError('required')">
@@ -54,7 +54,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.LOAN">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Tenure(in months)</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="tenureCtrl">
           <mat-error *ngIf="tenureCtrl.hasError('required')">
@@ -63,7 +63,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.SENDOI">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Monthly Interest</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="monthlyInterestCtrl">
           <mat-error *ngIf="monthlyInterestCtrl.hasError('required')">
@@ -72,7 +72,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.LOAN">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>EMI</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="emiCtrl">
           <mat-error *ngIf="emiCtrl.hasError('required')">
@@ -82,11 +82,11 @@
       </div>
 
       <div class="col-md-12">
-        <p style="font-weight: bold; font-size: 14px;">Customer Info</p>
-        <hr>
+        <p class="subtitle">Customer Info</p>
+        <mat-divider></mat-divider>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Customer ID</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="customerIdCtrl">
           <mat-error *ngIf="customerIdCtrl.hasError('required')">
@@ -95,7 +95,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Customer Name</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="customerNameCtrl">
           <mat-error *ngIf="customerNameCtrl.hasError('required')">
@@ -104,7 +104,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Gender</mat-label>
           <mat-select [formControl]="genderCtrl">
             <mat-option *ngFor="let gender of genders" [value]="gender.val">{{gender.val}}</mat-option>
@@ -112,7 +112,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Mobile Number</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="mobileNoCtrl">
           <mat-error *ngIf="mobileNoCtrl.hasError('required')">
@@ -121,11 +121,11 @@
         </mat-form-field>
       </div>
       <div class="col-md-12 mt-3 mb-3">
-        <p style="font-weight: bold; font-size: 14px;">Product Info</p>
-        <hr>
+        <p class="subtitle">Product Info</p>
+        <mat-divider></mat-divider>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Product Name</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="productNameCtrl">
           <mat-error *ngIf="productNameCtrl.hasError('required')">
@@ -134,7 +134,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Interest % </mat-label>
           <input type="number" matInput placeholder="Placeholder" [formControl]="interestCtrl">
           <mat-error *ngIf="interestCtrl.hasError('required')">
@@ -143,7 +143,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Frequency</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="frequencyCtrl">
           <mat-error *ngIf="frequencyCtrl.hasError('required')">
@@ -160,12 +160,12 @@
         </mat-radio-group>
       </div>
       <div class="col-md-12 mt-3 mb-3">
-        <p style="font-weight: bold; font-size: 14px;">Account Info</p>
-        <hr>
+        <p class="subtitle">Account Info</p>
+        <mat-divider></mat-divider>
       </div>
 
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Loan Account No.</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="accountNoCtrl">
           <mat-error *ngIf="accountNoCtrl.hasError('required')">
@@ -174,7 +174,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Repayment Date</mat-label>
           <input matInput [matDatepicker]="repaymentDatePicker" placeholder="Repayment Date" [formControl]="repaymentDateCtrl">
           <mat-datepicker-toggle matSuffix [for]="repaymentDatePicker"></mat-datepicker-toggle>
@@ -185,7 +185,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Closing Balance</mat-label>
           <input matInput placeholder="Placeholder" [formControl]="closingBalanceCtrl">
           <mat-error *ngIf="closingBalanceCtrl.hasError('required')">
@@ -194,7 +194,7 @@
         </mat-form-field>
       </div>
       <div class="col-md-4">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
           <mat-label>Status</mat-label>
           <mat-select [formControl]="statusCtrl">
             <mat-option *ngFor="let accountStatus of accountStatuses" [value]="accountStatus.val">{{accountStatus.val}}</mat-option>

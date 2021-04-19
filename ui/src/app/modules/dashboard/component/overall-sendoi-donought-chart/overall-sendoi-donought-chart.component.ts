@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { ISendoiVsInterestCollection } from '../../dashboard.model';
+import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
   selector: '[overall-sendoi-donought-chart]',
@@ -8,13 +10,28 @@ import Chart from 'chart.js';
 })
 export class OverallSendoiDonoughtChartComponent implements OnInit {
 
-  constructor() { }
+  data: ISendoiVsInterestCollection = {
+    totalInterestCollection: 20000,
+    totalInvested: 400000
+  };
+
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
-    this.drawChart();
+    this.getSendoiDoghnutChartData();
   }
 
-  drawChart(){
+  getSendoiDoghnutChartData() {
+    this.dashboardService.getRepaymentAgainstInvestment().subscribe(data=>{
+      this.data = data;
+      this.drawChart();
+    }, error=>{
+      console.log(error);
+      
+    })
+  }
+
+  drawChart() {
     new Chart(document.getElementById("overall-sendoi-chart"), {
       type: 'doughnut',
       data: {
@@ -23,20 +40,20 @@ export class OverallSendoiDonoughtChartComponent implements OnInit {
           {
             label: "Population (millions)",
             backgroundColor: ["#3e95cd", "#8e5ea2"],
-            data: [2478,5267]
+            data: [this.data.totalInvested, this.data.totalInterestCollection]
           }
         ]
       },
       options: {
-        legend:{
-          position:"bottom"
+        legend: {
+          position: "bottom"
         },
         title: {
           display: false,
           text: 'Sendoi Against Interest collection'
         }
       }
-  });
+    });
   }
 
 }

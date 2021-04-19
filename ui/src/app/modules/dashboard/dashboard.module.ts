@@ -9,7 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckingLoginGuardService } from '../auth/services/checking-login-guard.service';
 import { MaterialModule } from '../shared/material/material.module';
 import { DashboardService } from './service/dashboard.service';
-import { LinksComponent } from './component/links/links.component';
+import { RepaymentBarChartComponent } from './component/repayment-bar-chart/repayment-bar-chart.component';
+import { CustomerService } from '../customer/service/customer.service';
 
 const routes: Routes = [
   { path: '', component: DashboardLayoutComponent, canActivate: [CheckingLoginGuardService] },
@@ -27,8 +28,8 @@ const routes: Routes = [
     OverallSendoiDonoughtChartComponent,
     SendoiRepaymentChartComponent,
     TotalSendoiInvestmentNumberCardComponent,
-    LinksComponent
+    RepaymentBarChartComponent
   ],
-  providers: [DashboardService]
+  providers: [DashboardService, CustomerService]
 })
 export class DashboardModule { }
