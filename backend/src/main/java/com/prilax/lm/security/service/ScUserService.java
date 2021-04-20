@@ -151,7 +151,7 @@ public class ScUserService {
 		user.setMobile(apiUser.getMobile());
 		user.setGender(apiUser.getGender());
 		user.setStatus(apiUser.getStatus());
-		user.setPassword(new BCryptPasswordEncoder().encode("admin"));
+		user.setPassword(new BCryptPasswordEncoder().encode(apiUser.getPassword()));
 
 		if (LmUtil.isAllPresent(apiUser.getRoles())) {
 

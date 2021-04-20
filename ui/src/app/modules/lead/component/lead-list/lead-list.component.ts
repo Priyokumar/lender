@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { LeadStatus } from 'src/app/constant';
 import { ConfirmationDialogComponent } from 'src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IConfirmation, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
+import { LoaderService } from 'src/app/modules/shared/services/loader.service';
 import { ILead } from '../../lead.model';
 import { LeadService } from '../../service/lead.service';
 
@@ -14,13 +16,14 @@ import { LeadService } from '../../service/lead.service';
 export class LeadListComponent implements OnInit {
 
   public errorMessage: string;
-  public columns: string[] = ['leadId', 'customerName', 'productName', 'interest', 'frequency', 'tenure', 'status', 'action'];
+  public columns: string[] = ['leadId', 'customerName', 'requestedAmount', 'productName', 'interest', 'frequency', 'tenure', 'status', 'action'];
   public dataSource: MatTableDataSource<ILead>;
+  leadStatus = LeadStatus;
 
   constructor(
    
     private leadService: LeadService,
-    
+    public loaderService: LoaderService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
   ) { }
@@ -30,9 +33,12 @@ export class LeadListComponent implements OnInit {
   }
 
   getAllLeads() {
+    this.loaderService.loading(true);
     this.leadService.getLeads().subscribe(data => {
+      this.loaderService.loading(false);
       this.dataSource = new MatTableDataSource(data);
     }, error => {
+      this.loaderService.loading(false);
       console.log(error);
     })
   }
@@ -47,7 +53,9 @@ export class LeadListComponent implements OnInit {
     this.dialog.open(ConfirmationDialogComponent, { width: '26%', data: confirmationData, disableClose: true })
       .afterClosed().subscribe(okData => {
         if (okData) {
+          this.loaderService.loading(true);
           this.leadService.deleteLead(id).subscribe(data => {
+            this.loaderService.loading(false);
             if (data.apiMessage && data.apiMessage.error) {
               this.snackBar.openFromComponent(
                 SnackbarInfoComponent,
@@ -66,6 +74,7 @@ export class LeadListComponent implements OnInit {
             }
             this.getAllLeads();
           }, err => {
+            this.loaderService.loading(false);
             console.error(err);
             if (err.error && err.error.apiMessage) {
               this.errorMessage = err.error.apiMessage.detail;

@@ -1,0 +1,19 @@
+.content {
+    position: fixed;
+    top: 50px;
+    left: 240px;
+    height: calc(100% - 50px);
+    width: calc(100% - 240px);
+    background-color: #53545442;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15%;
+    .text{
+        font-style: italic;
+        letter-spacing: 1px;
+        color: #3f51b5;
+        font-weight: 500;
+    }
+}

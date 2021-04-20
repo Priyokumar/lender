@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prilax.lm.account.dto.Account;
@@ -24,8 +25,11 @@ public class LmAccountController {
 	private LmAccountService accountService;
 
 	@GetMapping
-	public List<Account> findAllAccounts() {
-		return accountService.findAllAccounts();
+	public List<Account> findAllAccounts(
+			@RequestParam(name = "customerId", required = false) String customerId,
+			@RequestParam(name = "status", required = false) String status
+			) {
+		return accountService.findAllAccounts(customerId, status);
 	}
 
 	@GetMapping(value = "/{id}")

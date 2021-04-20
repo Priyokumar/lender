@@ -12,4 +12,5 @@ export interface IUser {
     roles: IRole[];
     gender: string;
     status: string;
+    password: string;
 }

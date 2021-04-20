@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.prilax.lm.account.dto.Account;
 import com.prilax.lm.account.entity.LmAccount;
 import com.prilax.lm.account.entity.LmEmi;
+import com.prilax.lm.account.repository.LmAccountRepository;
 import com.prilax.lm.dto.ActionResponse;
 import com.prilax.lm.dto.ApiUtil;
 import com.prilax.lm.dto.error.NotFoundException;
@@ -25,13 +26,24 @@ public class LmAccountService {
 	private CommonService commonService;
 
 	@Autowired
+	private LmAccountRepository accountRepository;
+
+	@Autowired
 	private LmEmiService emiService;
 
 	ModelMapper modelMapper = new ModelMapper();
 
-	public List<Account> findAllAccounts() {
+	public List<Account> findAllAccounts(String customerId, String status) {
 
-		List<LmAccount> accounts = commonService.findAll(LmAccount.class);
+		List<LmAccount> accounts = new ArrayList<LmAccount>();
+
+		if (LmUtil.isAllPresent(status)) {
+			accounts = accountRepository.findDisburedAccounts();
+		} else if (LmUtil.isAllPresent(customerId)) {
+			accounts = accountRepository.findAccountsByCustomerId(customerId);
+		} else {
+			accounts = commonService.findAll(LmAccount.class);
+		}
 
 		List<Account> accountsDto = new ArrayList<>();
 		accounts.forEach(account -> {
@@ -73,12 +85,13 @@ public class LmAccountService {
 			account.setAccountNo(LmUtil.getGeneratedNumber("AC"));
 
 			if (account.getLead().getProduct().getType().equals(LmProductType.LOAN)) {
-				List<LmEmi> emis = emiService.generateEmi(account.getLead().getRequestedAmount(), account.getLead().getTenure(),
-						account.getLead().getProduct().getInterest(), account.getDateOfCreation());
+				List<LmEmi> emis = emiService.generateEmi(account.getLead().getRequestedAmount(),
+						account.getLead().getTenure(), account.getLead().getProduct().getInterest(),
+						account.getDateOfCreation());
 				account.setEmis(emis);
 				account.setRepaymentDate(emis.get(0).getDueDate());
 			} else if (account.getLead().getProduct().getType().equals(LmProductType.SENDOI)) {
-				
+
 				Calendar calender = Calendar.getInstance();
 				calender.setTime(account.getDateOfCreation());
 				calender.add(Calendar.MONTH, 1);
@@ -86,7 +99,7 @@ public class LmAccountService {
 			}
 
 		}
-		
+
 		account.setId(id);
 
 		commonService.save(account);

@@ -13,6 +13,7 @@ import com.prilax.lm.dto.error.NotFoundException;
 import com.prilax.lm.product.vo.LmProductType;
 import com.prilax.lm.repayment.dto.Repayment;
 import com.prilax.lm.repayment.entity.LmRepayment;
+import com.prilax.lm.repayment.repository.LmRepaymentRepository;
 import com.prilax.lm.service.common.CommonService;
 import com.prilax.lm.util.LmUtil;
 
@@ -22,18 +23,26 @@ public class LmRepaymentService {
 	@Autowired
 	private CommonService commonService;
 
+	@Autowired
+	private LmRepaymentRepository repaymentRepository;
+
 	ModelMapper modelMapper = new ModelMapper();
 
-	public List<Repayment> findAllRepayments() {
+	public List<Repayment> findAllRepayments(String accountNo) {
 
-		List<LmRepayment> repayments = commonService.findAll(LmRepayment.class);
+		List<LmRepayment> repayments = new ArrayList<LmRepayment>();
+		if (LmUtil.isAllPresent(accountNo)) {
+			repayments = repaymentRepository.findRepaymentsByAccountNo(accountNo);
+		} else {
+			repayments = commonService.findAll(LmRepayment.class);
+		}
 
 		List<Repayment> repaymentsDto = new ArrayList<>();
 		repayments.forEach(repayment -> {
 			Repayment repaymentDto = setRepaymentToDto(repayment);
 			repaymentsDto.add(repaymentDto);
 		});
-		
+
 		return repaymentsDto;
 	}
 
@@ -66,7 +75,7 @@ public class LmRepaymentService {
 		} else {
 			repayment.setRepaymentId(LmUtil.getGeneratedNumber("REPAY"));
 		}
-		
+
 		if (repayment.getAccount().getLead().getProduct().getType().equals(LmProductType.LOAN)) {
 		}
 		repayment.setId(id);

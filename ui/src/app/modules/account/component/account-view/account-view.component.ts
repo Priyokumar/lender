@@ -3,9 +3,11 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductType } from 'src/app/constant';
 import { EmiListDialogComponent } from 'src/app/modules/dialog/components/emi-list-dialog/emi-list-dialog.component';
+import { RepaymentListDialogComponent } from 'src/app/modules/dialog/components/repayment-list-dialog/repayment-list-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IConfirmation, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
+import { LoaderService } from 'src/app/modules/shared/services/loader.service';
 import { IAccount } from '../../account.model';
 import { AccountService } from '../../service/account.service';
 
@@ -26,7 +28,8 @@ export class AccountViewComponent implements OnInit {
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public loaderService: LoaderService
   ) {
     this.activatedRoute.params.subscribe(params => {
       this.id = params.id;
@@ -40,9 +43,12 @@ export class AccountViewComponent implements OnInit {
   }
 
   getAccountById() {
+    this.loaderService.loading(true);
     this.accountService.getAccountById(this.id).subscribe(data => {
       this.account = data;
+      this.loaderService.loading(false);
     }, error => {
+      this.loaderService.loading(false);
       console.log(error);
       if (error.error && error.error.apiMessage) {
         this.errorMessage = error.error.apiMessage.detail;
@@ -68,7 +74,9 @@ export class AccountViewComponent implements OnInit {
     this.dialog.open(ConfirmationDialogComponent, { width: '26%', data: confirmationData, disableClose: true })
       .afterClosed().subscribe(okData => {
         if (okData) {
+          this.loaderService.loading(true);
           this.accountService.deleteAccount(this.id).subscribe(data => {
+            this.loaderService.loading(false);
             if (data.apiMessage && data.apiMessage.error) {
               this.snackBar.openFromComponent(
                 SnackbarInfoComponent,
@@ -87,6 +95,7 @@ export class AccountViewComponent implements OnInit {
             }
             this.router.navigate(["/accounts"]);
           }, err => {
+            this.loaderService.loading(false);
             console.error(err);
             if (err.error && err.error.apiMessage) {
               this.errorMessage = err.error.apiMessage.detail;
@@ -106,6 +115,12 @@ export class AccountViewComponent implements OnInit {
 
   viewEmiList() {
     this.dialog.open(EmiListDialogComponent, { width: "65%", data: {
+      accountNo: this.account.accountNo
+    } });
+  }
+
+  viewRepaymentList() {
+    this.dialog.open(RepaymentListDialogComponent, { width: "65%", data: {
       accountNo: this.account.accountNo
     } });
   }

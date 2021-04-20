@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'products', loadChildren: './modules/product/product.module#ProductModule' },
   { path: 'leads', loadChildren: './modules/lead/lead.module#LeadModule' },
   { path: 'accounts', loadChildren: './modules/account/account.module#AccountModule' },
-  { path: 'repayments', loadChildren: './modules/repayment/repayment.module#RepaymentModule' }
+  { path: 'repayments', loadChildren: './modules/repayment/repayment.module#RepaymentModule' },
+  { path: 'customer360', loadChildren: './modules/customer360/customer360.module#Customer360Module' }
 ];
 
 @NgModule({

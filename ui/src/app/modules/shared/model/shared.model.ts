@@ -3,6 +3,7 @@ import { MatSnackBarConfig } from '@angular/material';
 export const allSideNavs: ISideNav[] = [
 
     { title: 'Dashboard', path: '/dashboard', icon: 'dashboard', hasSubmenu: false, submenu: [] },
+    { title: 'Customer 360', path: '/customer360', icon: '3d_rotation', hasSubmenu: false, submenu: [] },
     { title: 'Customer', path: '/customers', icon: 'settings_accessibility', hasSubmenu: false, submenu: [] },
     { title: 'Lead', path: '/leads', icon: 'integration_instructions', hasSubmenu: false, submenu: [] },
     { title: 'Account', path: '/accounts', icon: 'assignment_ind', hasSubmenu: false, submenu: [] },

@@ -124,6 +124,19 @@ input.mat-input-element {
   color: rgb(0 0 0 / 56%);
   padding-top: 7px;
 }
+
+.mat-select-disabled .mat-select-value {
+  color: rgb(0 0 0 / 56%);
+}
+
+.field{
+  color: rgba(0, 0, 0, 0.705);
+  label{
+      margin-right: 10px;
+      font-weight: 500;
+  }
+}
+
 .mat-input-element:disabled {
   color: rgb(0 0 0 / 56%);
 }
@@ -134,10 +147,6 @@ input.mat-input-element {
 
 .mat-divider{
   padding-bottom: 12px;
-}
-
-.col-md-4{
-  padding: 10px 40px;
 }
 
 .subtitle{

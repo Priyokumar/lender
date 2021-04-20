@@ -28,6 +28,7 @@ export class UserCreateEditComponent implements OnInit {
   mobileNoCtrl = new FormControl('', Validators.required);
   genderCtrl = new FormControl('', Validators.required);
   statusCtrl = new FormControl('', Validators.required);
+  passwordCtrl = new FormControl('', Validators.required);
   rolesFctrl = new FormControl();
   errorMessage: any;
   roles: IRole[];
@@ -47,7 +48,8 @@ export class UserCreateEditComponent implements OnInit {
       mobileNoCtrl: this.mobileNoCtrl,
       genderCtrl: this.genderCtrl,
       statusCtrl: this.statusCtrl,
-      rolesFctrl: this.rolesFctrl
+      rolesFctrl: this.rolesFctrl,
+      passwordCtrl: this.passwordCtrl
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -114,7 +116,8 @@ export class UserCreateEditComponent implements OnInit {
       gender: this.genderCtrl.value,
       mobile: this.mobileNoCtrl.value,
       roles: [],
-      status: this.statusCtrl.value
+      status: this.statusCtrl.value,
+      password: this.passwordCtrl.value
     };
 
     const roleIds = this.rolesFctrl.value;

@@ -35,7 +35,7 @@ export class RepaymentBarChartComponent implements OnInit {
         labels: ["Last Month", "Current Month"],
         datasets: [
           {
-            backgroundColor: ["#3e95cd", "#8e5ea2"],
+            backgroundColor: ["#F7BACE", "#87F7F0"],
             data: [this.lastMonthRepayment, this.currentMonthRepayment]
           }
         ]

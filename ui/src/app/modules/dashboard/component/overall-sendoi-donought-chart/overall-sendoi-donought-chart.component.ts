@@ -39,7 +39,7 @@ export class OverallSendoiDonoughtChartComponent implements OnInit {
         datasets: [
           {
             label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#8e5ea2"],
+            backgroundColor: ["#F76B1C", "#06D8A4"],
             data: [this.data.totalInvested, this.data.totalInterestCollection]
           }
         ]

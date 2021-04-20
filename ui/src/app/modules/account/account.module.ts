@@ -12,6 +12,8 @@ import { MaterialModule } from '../shared/material/material.module';
 import { LeadService } from '../lead/service/lead.service';
 import { ProductService } from '../product/service/product.service';
 import { EmiService } from './service/emi.service';
+import { RepaymentService } from '../repayment/service/repayment.service';
+import { PipeModule } from '../pipe/pipe.module';
 
 const routes: Routes = [
   { path: '', component: AccountListComponent, canActivate: [CheckingLoginGuardService] },
@@ -27,13 +29,14 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule,
+    PipeModule
   ],
   declarations: [
     AccountListComponent,
     AccountCreateEditComponent,
     AccountViewComponent
   ],
-  providers: [AccountService, LeadService, ProductService, EmiService],
+  providers: [AccountService, LeadService, ProductService, EmiService, RepaymentService],
 })
 export class AccountModule { }

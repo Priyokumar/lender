@@ -28,6 +28,12 @@
               {{row.customer?.name}}</td>
           </ng-container>
 
+          <ng-container matColumnDef="requestedAmount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Requested Amount</th>
+            <td mat-cell *matCellDef="let row" class="name-class">
+              {{row.requestedAmount | inr}}</td>
+          </ng-container>
+
           <ng-container matColumnDef="productName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
             <td mat-cell *matCellDef="let row" class="name-class">
@@ -56,7 +62,12 @@
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.status}}
+              <div class="font-500" [ngClass]="{
+                'font-orange': row.status === leadStatus.CLOSED,
+                'font-green': row.status === leadStatus.QUALIFIED,
+                'font-secondary-blue': row.status === leadStatus.NEW,
+                'font-red': row.status === leadStatus.DIS_QUALIFIED
+              }">{{row.status}}</div> 
             </td>
           </ng-container>
 

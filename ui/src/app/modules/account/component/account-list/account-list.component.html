@@ -7,7 +7,7 @@
       <button class="btn btn-save" [routerLink]="['/accounts/add']">
         <mat-icon class="white-icon">add</mat-icon>&nbsp;Add Loan Account
       </button>
-    </div> 
+    </div>
   </div>
   <div class="row">
 
@@ -19,7 +19,8 @@
           <ng-container matColumnDef="accountNo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No.</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              <a [routerLink]="'/accounts/'+row.id+'/view'">{{row.accountNo}}</a></td>
+              <a [routerLink]="'/accounts/'+row.id+'/view'">{{row.accountNo}}</a>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="customerName">
@@ -37,7 +38,7 @@
           <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Loan Amount</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.lead?.requestedAmount}}</td>
+              {{row.lead?.requestedAmount | inr}}</td>
           </ng-container>
 
           <ng-container matColumnDef="interest">
@@ -58,11 +59,16 @@
               {{row.lead?.tenure ? row.lead.tenure : 'NA'}}
             </td>
           </ng-container>
- 
+
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.status}}
+             <div class="font-500" [ngClass]="{
+              'font-orange': row.status === accountStatus.CLOSED,
+              'font-green': row.status === accountStatus.DISBURSED,
+              'font-secondary-blue': row.status === accountStatus.CREATED,
+              'font-red': row.status === accountStatus.REJECTED
+            }">{{row.status}}</div> 
             </td>
           </ng-container>
 

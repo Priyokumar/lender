@@ -9,3 +9,7 @@ export interface IRepayment {
     status: string;
     account: IAccount;
 }
+
+export interface IRepaymentParam {
+    accountNo: string;
+}

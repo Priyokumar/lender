@@ -6,22 +6,26 @@ import { ISendoiVsInterestCollection } from '../dashboard.model';
 @Injectable()
 export class DashboardService {
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-getRepaymentAgainstInvestment(){
-  return this.http.get<ISendoiVsInterestCollection>(ApiEndpoint.DASHBOARD+"/investment-vs-repayment");
-}
+  getRepaymentAgainstInvestment() {
+    return this.http.get<ISendoiVsInterestCollection>(ApiEndpoint.DASHBOARD + "/investment-vs-repayment");
+  }
 
-getTotalInvestment(){
-  return this.http.get<number>(ApiEndpoint.DASHBOARD+"/total-investment");
-}
+  getRepaymentAgainstInvestmentByCustomerId(customerId: string) {
+    return this.http.get<ISendoiVsInterestCollection>(ApiEndpoint.DASHBOARD + "/investment-vs-repayment-by-customerId/" + customerId);
+  }
 
-getCurrentAndLastMonthRepayments(){
-  return this.http.get<any>(ApiEndpoint.DASHBOARD+"/current-last-month-repayments");
-}
+  getTotalInvestment() {
+    return this.http.get<number>(ApiEndpoint.DASHBOARD + "/total-investment");
+  }
 
-findMonthWiseRepayments(){
-  return this.http.get<any>(ApiEndpoint.DASHBOARD+"/month-wise-repayments");
-}
+  getCurrentAndLastMonthRepayments() {
+    return this.http.get<any>(ApiEndpoint.DASHBOARD + "/current-last-month-repayments");
+  }
+
+  findMonthWiseRepayments() {
+    return this.http.get<any>(ApiEndpoint.DASHBOARD + "/month-wise-repayments");
+  }
 
 }

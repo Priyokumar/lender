@@ -1,0 +1,26 @@
+<main class="p-3 bg-white">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Select a customer</mat-label>
+        <input matInput placeholder="Placeholder" [formControl]="customerCtrl">
+        <button mat-button matSuffix mat-icon-button (click)="selectCustomer()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-error *ngIf="customerCtrl.hasError('required')">
+          Customer is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  
+  <div class="content mt-4" *ngIf="selectedCustomer">
+    <div class="row">
+      <div class="col-md-6">
+        <div customer-details [customer]="selectedCustomer"></div>
+        <div account-details [customer]="selectedCustomer"></div>
+      </div>
+      <div class="col-md-6" investment-vs-interest-collection-chart [customer]="selectedCustomer"></div>
+    </div>
+  </div>
+</main>

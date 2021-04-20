@@ -10,6 +10,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { AccountService } from '../account/service/account.service';
 import { DialogModule } from '../dialog/dialog.module';
 import { EmiService } from '../account/service/emi.service';
+import { PipeModule } from '../pipe/pipe.module';
 
 const routes: Routes = [
   { path: '', component: RepaymentListComponent, canActivate: [CheckingLoginGuardService] },
@@ -24,7 +25,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule,
+    PipeModule
   ],
   declarations: [RepaymentListComponent, RepaymentCreateEditComponent],
   providers: [RepaymentService, AccountService, EmiService]

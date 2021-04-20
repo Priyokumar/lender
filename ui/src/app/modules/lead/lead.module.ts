@@ -11,6 +11,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { CustomerService } from '../customer/service/customer.service';
 import { ProductService } from '../product/service/product.service';
 import { DialogModule } from '../dialog/dialog.module';
+import { PipeModule } from '../pipe/pipe.module';
 
 const routes: Routes = [
   { path: '', component: LeadListComponent, canActivate: [CheckingLoginGuardService] },
@@ -26,7 +27,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule, 
+    PipeModule
   ],
   declarations: [
     LeadListComponent,

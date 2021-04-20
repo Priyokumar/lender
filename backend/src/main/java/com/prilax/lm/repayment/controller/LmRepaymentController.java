@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prilax.lm.dto.ActionResponse;
@@ -24,8 +25,8 @@ public class LmRepaymentController {
 	private LmRepaymentService repaymentService;
 
 	@GetMapping
-	public List<Repayment> findAllRepayments() {
-		return repaymentService.findAllRepayments();
+	public List<Repayment> findAllRepayments(@RequestParam(name = "accountNo", required = false) String accountNo) {
+		return repaymentService.findAllRepayments(accountNo);
 	}
 
 	@GetMapping(value = "/{id}")

@@ -21,4 +21,5 @@ export interface IEmi {
 export interface IAccountQueryParams {
     accountNo?: string;
     status?: string;
+    customerId?: string;
 }

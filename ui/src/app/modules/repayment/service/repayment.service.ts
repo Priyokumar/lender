@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoint, IActionResponse } from '../../shared/model/shared.model';
-import { IRepayment } from '../repayment.model';
+import { IRepayment, IRepaymentParam } from '../repayment.model';
 
 @Injectable()
 export class RepaymentService {
@@ -11,8 +11,12 @@ export class RepaymentService {
     private http: HttpClient
   ) { }
 
-  getAllRepayments(): Observable<IRepayment[]> {
-    return this.http.get<any>(ApiEndpoint.REPAYMENTS);
+  getAllRepayments(params?: IRepaymentParam): Observable<IRepayment[]> {
+    if (params) {
+      return this.http.get<any>(ApiEndpoint.REPAYMENTS, { params: params as any });
+    } else {
+      return this.http.get<any>(ApiEndpoint.REPAYMENTS);
+    }
   }
 
   getRepaymentById(id: number): Observable<IRepayment> {

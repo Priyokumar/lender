@@ -12,11 +12,15 @@ import { HTTP_INTERCEPTOR_PROVIDERS } from './modules/shared/interceptors';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './modules/auth/services/auth.service';
 import { SharedModule } from './modules/shared/shared.module';
+import { LoaderComponent } from './modules/shared/components/loader/loader.component';
+import { LoaderService } from './modules/shared/services/loader.service';
+import { InrPipe } from './modules/pipe/inr.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SideNavComponent
+    SideNavComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

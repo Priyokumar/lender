@@ -51,6 +51,34 @@ public class LmDashboardService {
 
 		return jsonData;
 	}
+	
+	public String findRepaymentAgainstInvestmentByCustomerId(String customerId) {
+
+		Double totalInvested = 0.0;
+
+		List<LmAccount> accounts = accountRepository.findDisburedAccountsByCustomerId(customerId);
+
+		if (LmUtil.isAllPresent(accounts)) {
+			for (LmAccount account : accounts) {
+				totalInvested += account.getLead().getRequestedAmount();
+			}
+		}
+
+		List<LmRepayment> repayments = repaymentRepository.findPaidRepaymentsByCustomerId(customerId);
+
+		Double totalRepayment = calculateTotal(repayments);
+
+		Gson gson = new Gson();
+
+		HashMap<String, Double> map = new HashMap<>();
+
+		map.put("totalInvested", totalInvested);
+		map.put("totalInterestCollection", totalRepayment);
+
+		String jsonData = gson.toJson(map);
+
+		return jsonData;
+	}
 
 	public Double findTotalInvestment() {
 
@@ -150,29 +178,29 @@ public class LmDashboardService {
 
 		switch (val) {
 		case 0:
-			return "JAN";
+			return "JANUARY";
 		case 1:
-			return "FEB";
+			return "FEBRUARY";
 		case 2:
-			return "MAR";
+			return "MARCH";
 		case 3:
-			return "APR";
+			return "APRIL";
 		case 4:
 			return "MAY";
 		case 5:
-			return "JUN";
+			return "JUNE";
 		case 6:
-			return "JUL";
+			return "JULY";
 		case 7:
-			return "AUG";
+			return "AUGUST";
 		case 8:
-			return "SEPT";
+			return "SEPTEMBER";
 		case 9:
-			return "OCT";
+			return "OCTOBER";
 		case 10:
-			return "NOV";
+			return "NOVEMBER";
 		case 11:
-			return "DEC";
+			return "DECEMBER";
 
 		default:
 			return null;

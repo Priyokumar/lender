@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ConfirmationDialogComponent } from 'src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IConfirmation, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
+import { LoaderService } from 'src/app/modules/shared/services/loader.service';
 import { ICustomer } from '../../customer.model';
 import { CustomerService } from '../../service/customer.service';
 
@@ -21,6 +22,7 @@ export class CustomerListComponent implements OnInit {
     private customerService: CustomerService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    public loaderService: LoaderService
   ) { }
 
   ngOnInit() {
@@ -28,9 +30,12 @@ export class CustomerListComponent implements OnInit {
   }
 
   getAllCustomers() {
+    this.loaderService.loading(true);
     this.customerService.getAllCustomers().subscribe(data => {
+      this.loaderService.loading(false);
       this.dataSource = new MatTableDataSource(data);
     }, error => {
+      this.loaderService.loading(false);
       console.log(error);
     })
   }

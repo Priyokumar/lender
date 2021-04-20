@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AccountStatuses, Genders, ProductType, RepaymentStatuses } from 'src/app/constant';
+import { AccountStatus, AccountStatuses, Genders, ProductType, RepaymentStatuses } from 'src/app/constant';
 import { IAccount, IEmi } from 'src/app/modules/account/account.model';
 import { AccountListDialogComponent } from 'src/app/modules/dialog/components/account-list-dialog/account-list-dialog.component';
 import { EmiListDialogComponent } from 'src/app/modules/dialog/components/emi-list-dialog/emi-list-dialog.component';
@@ -208,7 +208,7 @@ export class RepaymentCreateEditComponent implements OnInit {
 
   selectAccount() {
 
-    this.dialog.open(AccountListDialogComponent, { width: "65%" }).afterClosed().subscribe(account => {
+    this.dialog.open(AccountListDialogComponent, { width: "65%", data: { status: AccountStatus.DISBURSED } }).afterClosed().subscribe(account => {
       if (account) {
 
         this.selectedAccount = account;
@@ -236,6 +236,19 @@ export class RepaymentCreateEditComponent implements OnInit {
   calculateDueAmount() {
 
     const amountPaid = parseInt(this.amountPaidCtrl.value);
+
+    if (!amountPaid || !this.selectedAccount || !this.selectedAccount.lead || !this.selectedAccount.lead.monthlyInterest) {
+      return;
+    }
+    const monthlyInterest = this.selectedAccount.lead.monthlyInterest;
+
+    if (amountPaid > monthlyInterest) {
+      this.amountPaidCtrl.setValue(monthlyInterest);
+      return;
+    }
+
+    const dueAmount = monthlyInterest - amountPaid;
+    this.dueAmountCtrl.setValue(dueAmount);
 
   }
 

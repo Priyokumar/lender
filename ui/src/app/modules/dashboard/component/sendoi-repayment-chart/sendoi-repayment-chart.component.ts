@@ -39,8 +39,8 @@ export class SendoiRepaymentChartComponent implements OnInit {
         datasets: [{ 
             data: this.data.values,
             label: "Repayment",
-            borderColor: "#3e95cd",
-            backgroundColor:"#3e96cd28",
+            borderColor: "#08AEEA",
+            backgroundColor:"#2af59a2d",
             fill: true, 
           }
         ]

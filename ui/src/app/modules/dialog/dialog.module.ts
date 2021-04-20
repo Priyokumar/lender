@@ -6,6 +6,7 @@ import { ProductListDialogComponent } from './components/product-list-dialog/pro
 import { LeadListDialogComponent } from './components/lead-list-dialog/lead-list-dialog.component';
 import { EmiListDialogComponent } from './components/emi-list-dialog/emi-list-dialog.component';
 import { AccountListDialogComponent } from './components/account-list-dialog/account-list-dialog.component';
+import { RepaymentListDialogComponent } from './components/repayment-list-dialog/repayment-list-dialog.component';
 
 @NgModule({
   imports: [
@@ -17,14 +18,16 @@ import { AccountListDialogComponent } from './components/account-list-dialog/acc
     ProductListDialogComponent,
     LeadListDialogComponent,
     EmiListDialogComponent,
-    AccountListDialogComponent
+    AccountListDialogComponent,
+    RepaymentListDialogComponent
   ],
   entryComponents: [
     CustomerListDialogComponent,
     ProductListDialogComponent,
     LeadListDialogComponent,
     EmiListDialogComponent,
-    AccountListDialogComponent
+    AccountListDialogComponent,
+    RepaymentListDialogComponent
   ]
 })
 export class DialogModule { }

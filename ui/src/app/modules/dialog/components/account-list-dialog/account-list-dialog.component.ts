@@ -18,7 +18,7 @@ export class AccountListDialogComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     public dialogRef: MatDialogRef<AccountListDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public status: string
+    @Inject(MAT_DIALOG_DATA) public data: IAccountQueryParams
   ) { }
 
   ngOnInit() {
@@ -29,9 +29,9 @@ export class AccountListDialogComponent implements OnInit {
 
     let params: IAccountQueryParams = null;
 
-    if(this.status){
+    if(this.data.status){
       params  = {
-        status:this.status
+        status:this.data.status
       }
     }
 

@@ -11,6 +11,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { DashboardService } from './service/dashboard.service';
 import { RepaymentBarChartComponent } from './component/repayment-bar-chart/repayment-bar-chart.component';
 import { CustomerService } from '../customer/service/customer.service';
+import { PipeModule } from '../pipe/pipe.module';
 
 const routes: Routes = [
   { path: '', component: DashboardLayoutComponent, canActivate: [CheckingLoginGuardService] },
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes),
+    PipeModule 
   ],
   declarations: [
     CustomerNumberCardComponent,

@@ -21,7 +21,8 @@ import {
   MatProgressBarModule,
   MatChipsModule,
   MatNativeDateModule,
-  MatDividerModule
+  MatDividerModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -52,7 +53,8 @@ import {
     MatProgressBarModule,
     MatChipsModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

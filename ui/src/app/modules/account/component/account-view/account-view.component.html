@@ -4,8 +4,11 @@
       <span class="font-400 font-banner" style="line-height: 35px;">Account</span>
     </div>
     <div class="col-md-6 text-right">
-      <button class="btn btn-edit" routerLink="/accounts">
+      <button class="btn btn-save" routerLink="/accounts">
         <mat-icon class="white-icon">list</mat-icon>&nbsp;Account List
+      </button>
+      <button class="btn btn-edit" [routerLink]="'/accounts/'+account.id+'/edit'">
+        <mat-icon class="white-icon">edit</mat-icon>&nbsp;Edit
       </button>
       <button class="btn btn-cancel" (click)="delete()">
         <mat-icon class="white-icon font-title-lg">delete</mat-icon>&nbsp;Delete
@@ -56,6 +59,11 @@
         <div class="d-flex field">
           <label>Monthly Interest :</label>
           <div>{{account?.lead?.monthlyInterest}}</div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.SENDOI">
+        <div class="d-flex field">
+          <u (click)="viewRepaymentList()">View Repayments Details</u>
         </div>
       </div>
       <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.LOAN">

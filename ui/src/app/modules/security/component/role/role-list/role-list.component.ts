@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ConfirmationDialogComponent } from 'src/app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IConfirmation, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
+import { LoaderService } from 'src/app/modules/shared/services/loader.service';
 import { IRole } from '../../../security.model';
 import { RoleService } from '../../../service/role.service';
 
@@ -21,6 +22,7 @@ export class RoleListComponent implements OnInit {
     private roleService: RoleService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    public loaderService: LoaderService
     ) { }
 
   ngOnInit() {
@@ -28,9 +30,12 @@ export class RoleListComponent implements OnInit {
   }
 
   getAllRoles(){
+    this.loaderService.loading(true);
     this.roleService.getAllRoles().subscribe(data=>{
+      this.loaderService.loading(false);
       this.dataSource = new MatTableDataSource(data);
     }, error=>{
+      this.loaderService.loading(false);
       console.log(error);
     })
   }
@@ -45,7 +50,9 @@ export class RoleListComponent implements OnInit {
     this.dialog.open(ConfirmationDialogComponent, { width: '26%', data: confirmationData, disableClose: true })
       .afterClosed().subscribe(okData => {
         if (okData) {
+          this.loaderService.loading(true);
           this.roleService.deleteRole(id).subscribe(data => {
+            this.loaderService.loading(false);
             if (data.apiMessage && data.apiMessage.error) {
               this.snackBar.openFromComponent(
                 SnackbarInfoComponent,
@@ -64,6 +71,7 @@ export class RoleListComponent implements OnInit {
             }
             this.getAllRoles();
           }, err => {
+            this.loaderService.loading(false);
             console.error(err);
             if (err.error && err.error.apiMessage) {
               this.errorMessage = err.error.apiMessage.detail;

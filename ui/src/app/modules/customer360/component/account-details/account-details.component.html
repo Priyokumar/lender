@@ -1,0 +1,67 @@
+<div class="mt-4">
+  <div class="subtitle">Account Details</div>
+  <mat-divider></mat-divider>
+  <div *ngFor="let account of accounts; let i = index; let c = count;">
+    <div class="row mt-3 mb-3">
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Account Number :</label>
+          <div>{{account?.accountNo}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Disbursed Amount :</label>
+          <div>{{account?.lead?.requestedAmount}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Product Name :</label>
+          <div>{{account?.lead?.product?.name}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Interest % :</label>
+          <div>{{account?.lead?.product?.interest}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Frequency :</label>
+          <div>{{account?.lead?.product?.frequency}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Monthly Interest :</label>
+          <div>{{account?.lead?.monthlyInterest}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Status :</label>
+          <div class="status" [ngClass]="{
+            'warning-snackbar': account.status === accountStatus.CLOSED,
+            'success-snackbar': account.status === accountStatus.DISBURSED,
+            'info-snackbar': account.status === accountStatus.CREATED,
+            'danger-snackbar': account.status === accountStatus.REJECTED
+          }">{{account?.status}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex field">
+          <label>Status :</label>
+          <div>{{account?.status}}</div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4">
+        <div class="d-flex field">
+          <u (click)="viewRepaymentList(account)">View Repayments Details</u>
+        </div>
+      </div>
+    </div>
+    <mat-divider *ngIf="i!== accounts.length -1"></mat-divider>
+  </div>
+</div>
