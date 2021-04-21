@@ -7,3 +7,9 @@
     font-weight: 500;
     margin-bottom: 7px !important;
 }
+
+
+main {
+    height: calc(100vh - 36px);
+    overflow-y: auto;
+}
