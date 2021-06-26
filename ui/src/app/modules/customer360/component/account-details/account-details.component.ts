@@ -4,6 +4,7 @@ import { AccountStatus } from 'src/app/constant';
 import { IAccount, IAccountQueryParams } from 'src/app/modules/account/account.model';
 import { AccountService } from 'src/app/modules/account/service/account.service';
 import { ICustomer } from 'src/app/modules/customer/customer.model';
+import { RepaymentDialogComponent } from 'src/app/modules/dialog/components/repayment-dialog/repayment-dialog.component';
 import { RepaymentListDialogComponent } from 'src/app/modules/dialog/components/repayment-list-dialog/repayment-list-dialog.component';
 
 @Component({
@@ -46,6 +47,10 @@ export class AccountDetailsComponent implements OnInit, OnChanges {
     this.dialog.open(RepaymentListDialogComponent, { width: "65%", data: {
       accountNo: account.accountNo
     } });
+  }
+
+  repay(account: IAccount) {
+    this.dialog.open(RepaymentDialogComponent, { width: "25%", data: account });
   }
 
 }

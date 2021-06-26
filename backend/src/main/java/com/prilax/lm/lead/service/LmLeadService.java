@@ -1,6 +1,7 @@
 package com.prilax.lm.lead.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,10 @@ import com.prilax.lm.lead.entity.LmLead;
 import com.prilax.lm.lead.repository.LmLeadRepository;
 import com.prilax.lm.service.common.CommonService;
 import com.prilax.lm.util.LmUtil;
+import com.prilax.lm.vo.FieldType;
+import com.prilax.lm.vo.Filter;
+import com.prilax.lm.vo.LeadStatus;
+import com.prilax.lm.vo.Operator;
 
 @Service
 public class LmLeadService {
@@ -117,6 +122,29 @@ public class LmLeadService {
 		Lead leadDto = modelMapper.map(lead, Lead.class);
 
 		return leadDto;
+	}
+
+	public List<Lead> findLeadsToCreatedAccount() {
+
+		List<LmLead> leads = new ArrayList<LmLead>();
+
+		List<Filter> filters = Arrays.asList(
+				new Filter("status", Operator.EQUAL, FieldType.STRING, LeadStatus.QUALIFIED),
+				new Filter("status", Operator.NOT_EQUAL, FieldType.STRING, LeadStatus.ACCOUNT_CREATED));
+		leads = commonService.find(filters, LmLead.class);
+
+		List<Lead> leadsDto = new ArrayList<>();
+		leads.forEach(lead -> {
+			Lead leadDto = setLeadToDto(lead);
+			leadsDto.add(leadDto);
+		});
+
+		return leadsDto;
+	}
+
+	public Integer findLeadsCountByCustId(String custId) {
+		List<LmLead> leads = leadRepository.findByCustomerId(custId);
+		return leads.size();
 	}
 
 }

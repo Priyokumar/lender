@@ -42,7 +42,7 @@ export interface IActionResponse {
 
 export class ApiEndpoint {
 
-    public static BASE_URL = '';
+    public static BASE_URL = 'http://localhost';
     // public static BASE_URL = 'http://localhost:8080';
     public static API_BASE_URL = ApiEndpoint.BASE_URL + '/api/v1';
     //public static BASE_URL = 'http://apis.pesl.org.in';

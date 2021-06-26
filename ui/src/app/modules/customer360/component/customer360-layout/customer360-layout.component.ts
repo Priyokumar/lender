@@ -23,7 +23,7 @@ export class Customer360LayoutComponent implements OnInit {
   }
 
   selectCustomer() {
-    this.dialog.open(CustomerListDialogComponent, { width: "65%" }).afterClosed().subscribe(customer => {
+    this.dialog.open(CustomerListDialogComponent, {data:{}, width: "65%" }).afterClosed().subscribe(customer => {
       if (customer) {
         this.selectedCustomer = customer;
         this.customerCtrl.setValue(customer.customerId);

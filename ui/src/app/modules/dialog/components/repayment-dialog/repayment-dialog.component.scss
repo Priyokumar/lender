@@ -1,0 +1,22 @@
+.content {
+  padding: 30px;
+  .col-md-12 {
+    padding: 5px;
+  }
+  .value {
+    font-weight: 500;
+  }
+
+  .body-content{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+  }
+
+  table {
+    width: 100%;
+    td {
+      padding: 5px;
+    }
+  }
+}

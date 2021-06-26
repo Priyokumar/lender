@@ -28,6 +28,7 @@ export class AccountCreateEditComponent implements OnInit {
 
   idCtrl = new FormControl('', null);
   accountNoCtrl = new FormControl('', Validators.required);
+  createdAtCtrl = new FormControl('', Validators.required);
   repaymentDateCtrl = new FormControl('', Validators.required);
   closingBalanceCtrl = new FormControl('', Validators.required);
   statusCtrl = new FormControl('', Validators.required);
@@ -66,10 +67,11 @@ export class AccountCreateEditComponent implements OnInit {
     this.form = new FormGroup({
       idCtrl: this.idCtrl,
       accountNoCtrl: this.accountNoCtrl,
+
       repaymentDateCtrl: this.repaymentDateCtrl,
       closingBalanceCtrl: this.closingBalanceCtrl,
       statusCtrl: this.statusCtrl,
-
+      createdAtCtrl:this.createdAtCtrl,
       leadIdCtrl: this.leadIdCtrl,
       requestedAmountCtrl: this.requestedAmountCtrl,
       monthlyInterestCtrl: this.monthlyInterestCtrl,
@@ -111,7 +113,7 @@ export class AccountCreateEditComponent implements OnInit {
     this.mobileNoCtrl.disable();
     this.interestCtrl.disable();
     this.tenureCtrl.setValue(0);
-    this.repaymentDateCtrl.disable();
+    //this.repaymentDateCtrl.disable();
 
   }
 
@@ -131,6 +133,7 @@ export class AccountCreateEditComponent implements OnInit {
 
     this.idCtrl.setValue(account.id);
     this.accountNoCtrl.setValue(account.accountNo);
+    this.createdAtCtrl.setValue(new Date(account.dateOfCreation));
     this.repaymentDateCtrl.setValue(new Date(account.repaymentDate));
     this.closingBalanceCtrl.setValue(account.closingBalance);
     this.statusCtrl.setValue(account.status);
@@ -180,7 +183,8 @@ export class AccountCreateEditComponent implements OnInit {
       closingBalance: this.closingBalanceCtrl.value,
       emis: [],
       lead: this.selectedLead,
-      repaymentDate: this.repaymentDateCtrl.value
+      repaymentDate: this.repaymentDateCtrl.value,
+      dateOfCreation: this.createdAtCtrl.value
     };
 
 

@@ -1,0 +1,98 @@
+<div class="content">
+  <div class="heading d-flex justify-content-between align-items-center">
+    <h2>Repayment</h2>
+    <mat-icon (click)="dialogRef.close()" class="cursor-pointer">close</mat-icon>
+  </div>
+  <div class="body-content mt-4">
+    <table>
+      <tbody>
+        <tr>
+          <td class="label">Account Number</td>
+          <td class="value">: {{ data?.accountNo }}</td>
+        </tr>
+        <tr>
+          <td class="label">Lead ID</td>
+          <td class="value">: {{ data?.lead?.leadId }}</td>
+        </tr>
+        <tr>
+          <td class="label">Customer Name</td>
+          <td class="value">: {{ data?.lead?.customer?.name }}</td>
+        </tr>
+        <tr>
+          <td class="label">Loan Amount</td>
+          <td class="value">: {{ data?.lead?.requestedAmount }}</td>
+        </tr>
+        <tr>
+          <td class="label">Interest to be paid</td>
+          <td class="value">: {{ data?.lead?.monthlyInterest }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Amount Paid</mat-label>
+              <input type="number" matInput placeholder="Placeholder" [formControl]="amountPaidCtrl">
+              <mat-error *ngIf="amountPaidCtrl.hasError('required')">
+                Amount Paid is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Due Amount</mat-label>
+              <input matInput placeholder="Placeholder" [formControl]="dueAmountCtrl">
+              <mat-error *ngIf="dueAmountCtrl.hasError('required')">
+                Due Amount is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Status</mat-label>
+              <mat-select [formControl]="statusCtrl">
+                <mat-option *ngFor="let status of repaymentStatuses" [value]="status.val">{{status.val}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="statusCtrl.hasError('required')">
+                Status ID is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Date Of Payment</mat-label>
+              <input matInput [matDatepicker]="repaymentDatePicker" placeholder="Repayment Date"
+                [formControl]="dateOfPaymentCtrl">
+              <mat-datepicker-toggle matSuffix [for]="repaymentDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #repaymentDatePicker></mat-datepicker>
+              <mat-error *ngIf="dateOfPaymentCtrl.hasError('required')">
+                Date Of Payment is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer mt-3 d-flex justify-content-end align-items-center">
+    <button mat-raised-button class="bg-dark-green mr-3 font-white" (click)="repay()">
+      Repay
+    </button>
+    <button
+      mat-raised-button
+      (click)="dialogRef.close()"
+      class="bg-red font-white"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

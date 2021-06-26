@@ -177,11 +177,23 @@
         </div>
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Date of Creation</mat-label>
+            <input matInput [matDatepicker]="createdAtDatePicker" placeholder="Date of Creation"
+              [formControl]="createdAtCtrl">
+            <mat-datepicker-toggle matSuffix [for]="createdAtDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #createdAtDatePicker ></mat-datepicker>
+            <mat-error *ngIf="createdAtCtrl.hasError('required')">
+              Date of Creation is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field appearance="fill" class="w-100">
             <mat-label>Repayment Date</mat-label>
             <input matInput [matDatepicker]="repaymentDatePicker" placeholder="Repayment Date"
               [formControl]="repaymentDateCtrl">
             <mat-datepicker-toggle matSuffix [for]="repaymentDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #repaymentDatePicker startView="year" [startAt]="repaymentStartDate"></mat-datepicker>
+            <mat-datepicker #repaymentDatePicker></mat-datepicker>
             <mat-error *ngIf="repaymentDateCtrl.hasError('required')">
               Repayment Date is <strong>required</strong>
             </mat-error>

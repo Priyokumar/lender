@@ -56,10 +56,11 @@
           <div>{{account?.status}}</div>
         </div>
       </div>
-      <div class="col-md-6 mt-4" *ngIf="account?.status !== accountStatus.REJECTED && account?.status !== accountStatus.CREATED">
-        <div class="d-flex field">
-          <u (click)="viewRepaymentList(account)">View Repayments Details</u>
-        </div>
+    </div>
+    <div class="mt-4" *ngIf="account?.status !== accountStatus.REJECTED && account?.status !== accountStatus.CREATED">
+      <div class="d-flex field">
+        <button mat-raised-button class="bg-dark-green mr-2 font-white" (click)="repay(account)">Add Repayment</button>
+        <button mat-raised-button class="bg-secondary-blue font-white" (click)="viewRepaymentList(account)">View Repayments</button>
       </div>
     </div>
     <mat-divider *ngIf="i!== accounts.length -1"></mat-divider>

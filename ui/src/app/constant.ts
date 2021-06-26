@@ -48,12 +48,14 @@ export class LeadStatus {
     static QUALIFIED = "Qualified";
     static DIS_QUALIFIED = "Dis-Qualified";
     static CLOSED = "Closed";
+    static ACCOUNT_CREATED = "Account Created";
 }
 export const LeadStatuses: KeyVal[] = [
     { key: LeadStatus.NEW, val: LeadStatus.NEW },
     { key: LeadStatus.QUALIFIED, val: LeadStatus.QUALIFIED },
     { key: LeadStatus.DIS_QUALIFIED, val: LeadStatus.DIS_QUALIFIED },
     { key: LeadStatus.CLOSED, val: LeadStatus.CLOSED },
+    { key: LeadStatus.ACCOUNT_CREATED, val: LeadStatus.ACCOUNT_CREATED },
 ]
 
 export class ProductType {

@@ -25,7 +25,7 @@ export class LeadListDialogComponent implements OnInit {
   }
 
   getLeads() {
-    this.leadService.getLeads({status: LeadStatus.QUALIFIED}).subscribe(data => {
+    this.leadService.getQualifiedLeads().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     }, error => {
       console.log(error);

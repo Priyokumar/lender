@@ -38,6 +38,16 @@ public class LmLeadController {
 	public Lead findLead(@PathVariable("id") Long id) {
 		return leadService.findLeadById(id);
 	}
+	
+	@GetMapping(value = "/qualified/leads")
+	public List<Lead> findLead() {
+		return leadService.findLeadsToCreatedAccount();
+	}
+	
+	@GetMapping(value = "/count/customer/{custId}")
+	public Integer findLead(@PathVariable("custId") String custId) {
+		return leadService.findLeadsCountByCustId(custId);
+	}
 
 	@PostMapping
 	public ActionResponse createLead(@RequestBody Lead lead) {

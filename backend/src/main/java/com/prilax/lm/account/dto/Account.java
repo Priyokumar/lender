@@ -13,6 +13,8 @@ public class Account {
 
 	private String accountNo;
 	
+	private Date dateOfCreation;
+	
 	private Date repaymentDate;
 	
 	private Double closingBalance;
@@ -88,5 +90,14 @@ public class Account {
 	public void setAudit(RecordAudit audit) {
 		this.audit = audit;
 	}
+
+	public Date getDateOfCreation() {
+		return dateOfCreation;
+	}
+
+	public void setDateOfCreation(Date dateOfCreation) {
+		this.dateOfCreation = dateOfCreation;
+	}
+	
 	
 }

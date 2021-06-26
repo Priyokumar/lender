@@ -18,6 +18,7 @@ import com.prilax.lm.dto.error.NotFoundException;
 import com.prilax.lm.product.vo.LmProductType;
 import com.prilax.lm.service.common.CommonService;
 import com.prilax.lm.util.LmUtil;
+import com.prilax.lm.vo.LeadStatus;
 
 @Service
 public class LmAccountService {
@@ -83,7 +84,7 @@ public class LmAccountService {
 			}
 		} else {
 			account.setAccountNo(LmUtil.getGeneratedNumber("AC"));
-
+			account.getLead().setStatus(LeadStatus.ACCOUNT_CREATED);
 			if (account.getLead().getProduct().getType().equals(LmProductType.LOAN)) {
 				List<LmEmi> emis = emiService.generateEmi(account.getLead().getRequestedAmount(),
 						account.getLead().getTenure(), account.getLead().getProduct().getInterest(),

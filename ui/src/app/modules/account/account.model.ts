@@ -3,6 +3,7 @@ import { ILead } from "../lead/lead.model";
 export interface IAccount {
     id: number;
     accountNo: string;
+    dateOfCreation:Date;
     repaymentDate: Date;
     closingBalance: number;
     status: string;

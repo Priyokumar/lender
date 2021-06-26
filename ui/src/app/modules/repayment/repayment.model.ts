@@ -2,7 +2,7 @@ import { IAccount } from "../account/account.model";
 
 export interface IRepayment {
     id: number;
-    repaymentId: string;
+    repaymentId?: string;
     dateOfPayment: Date;
     amountPaid: number;
     dueAmount: number;

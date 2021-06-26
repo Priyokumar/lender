@@ -13,6 +13,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { InvestmentVsInterestCollectionChartComponent } from './component/investment-vs-interest-collection-chart/investment-vs-interest-collection-chart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardService } from '../dashboard/service/dashboard.service';
+import { LeadService } from '../lead/service/lead.service';
 
 const routes: Routes = [
   { path: '', component: Customer360LayoutComponent, canActivate: [CheckingLoginGuardService] },
@@ -37,7 +38,8 @@ const routes: Routes = [
     AccountService,
     CustomerService,
     RepaymentService,
-    DashboardService
+    DashboardService,
+    LeadService
   ]
 })
 export class Customer360Module { }

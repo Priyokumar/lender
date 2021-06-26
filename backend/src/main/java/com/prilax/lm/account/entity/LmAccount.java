@@ -38,7 +38,7 @@ public class LmAccount implements Serializable {
 	private String accountNo;
 	
 	@Column(name = "DATE_OF_CREATION")
-	private Date dateOfCreation = new Date();
+	private Date dateOfCreation;
 	
 	@Column(name = "REPAYMENT_DATE")
 	private Date repaymentDate;

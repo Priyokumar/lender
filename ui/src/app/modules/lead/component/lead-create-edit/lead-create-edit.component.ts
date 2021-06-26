@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Genders, LeadStatuses, ProductType, ProductTypes, YesNo } from 'src/app/constant';
+import { Genders, LeadStatus, LeadStatuses, ProductType, ProductTypes, YesNo } from 'src/app/constant';
 import { ICustomer } from 'src/app/modules/customer/customer.model';
 import { IProduct } from 'src/app/modules/product/product.model';
 import { ProductService } from 'src/app/modules/product/service/product.service';
@@ -105,6 +105,9 @@ export class LeadCreateEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!this.id){
+      this.statusCtrl.setValue(LeadStatus.NEW);
+    }
   }
 
 
@@ -210,7 +213,7 @@ export class LeadCreateEditComponent implements OnInit {
   }
 
   selectCustomer() {
-    this.dialog.open(CustomerListDialogComponent, { width: "65%" }).afterClosed().subscribe(customer => {
+    this.dialog.open(CustomerListDialogComponent, {data:{ from: "LEAD" }, width: "65%" }).afterClosed().subscribe(customer => {
       if (customer) {
         this.selectedCustomer = customer;
         this.customerNameCtrl.setValue(customer.name);
