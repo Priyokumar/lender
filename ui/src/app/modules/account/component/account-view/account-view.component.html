@@ -1,13 +1,14 @@
 <div class="form-min-height m-3 bg-white">
-  <div class="row p-1 bg-gold">
-    <div class="col-md-6">
-      <span class="font-400 font-banner" style="line-height: 35px;">Account</span>
-    </div>
-    <div class="col-md-6 text-right">
+  <div class="d-flex justify-content-between p-1 ps-4 bg-gold">
+    <span class="font-400 font-banner" style="line-height: 35px">Account</span>
+    <div>
       <button class="btn btn-save" routerLink="/accounts">
         <mat-icon class="white-icon">list</mat-icon>&nbsp;Account List
       </button>
-      <button class="btn btn-edit" [routerLink]="'/accounts/'+account.id+'/edit'">
+      <button
+        class="btn btn-edit"
+        [routerLink]="'/accounts/' + account.id + '/edit'"
+      >
         <mat-icon class="white-icon">edit</mat-icon>&nbsp;Edit
       </button>
       <button class="btn btn-cancel" (click)="delete()">
@@ -16,63 +17,73 @@
     </div>
   </div>
 
-  <div [ngClass]="['pt-1','pr-5','pl-5']">
-
+  <div [ngClass]="['pt-1', 'pr-5', 'pl-5']">
     <div class="row pt-3">
-
       <div class="col-md-12">
         <h3>Account Info</h3>
-        <hr>
+        <hr />
       </div>
 
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Account Number :</label>
-          <div>{{account?.accountNo}}</div>
+          <div>{{ account?.accountNo }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Loan Amount :</label>
-          <div>{{account?.lead?.requestedAmount}}</div>
+          <div>{{ account?.lead?.requestedAmount }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Repayment Date :</label>
-          <div>{{account?.repaymentDate | date}}</div>
+          <div>{{ account?.repaymentDate | date }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Closing Balance :</label>
-          <div>{{account?.closingBalance}}</div>
+          <div>{{ account?.closingBalance }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Status :</label>
-          <div>{{account?.status}}</div>
+          <div>{{ account?.status }}</div>
         </div>
       </div>
-      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.SENDOI">
+      <div
+        class="col-md-4"
+        *ngIf="account?.lead?.product?.type === productType.SENDOI"
+      >
         <div class="d-flex field">
           <label>Monthly Interest :</label>
-          <div>{{account?.lead?.monthlyInterest}}</div>
+          <div>{{ account?.lead?.monthlyInterest }}</div>
         </div>
       </div>
-      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.SENDOI">
+      <div
+        class="col-md-4"
+        *ngIf="account?.lead?.product?.type === productType.SENDOI"
+      >
         <div class="d-flex field">
           <u (click)="viewRepaymentList()">View Repayments Details</u>
         </div>
       </div>
-      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.LOAN">
+      <div
+        class="col-md-4"
+        *ngIf="account?.lead?.product?.type === productType.LOAN"
+      >
         <div class="d-flex field">
           <label>EMI :</label>
-          <div>{{account?.lead?.emi}}</div>
+          <div>{{ account?.lead?.emi }}</div>
         </div>
       </div>
-      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.LOAN">
+      <div
+        class="col-md-4"
+        *ngIf="account?.lead?.product?.type === productType.LOAN"
+      >
         <div class="d-flex field">
           <u (click)="viewEmiList()">View EMI details</u>
         </div>
@@ -80,84 +91,86 @@
 
       <div class="col-md-12 mt-4">
         <h3>Lead Info</h3>
-        <hr>
+        <hr />
       </div>
 
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Lead ID :</label>
-          <div>{{account?.lead?.leadId}}</div>
+          <div>{{ account?.lead?.leadId }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Lead Status :</label>
-          <div>{{account?.lead?.status}}</div>
+          <div>{{ account?.lead?.status }}</div>
         </div>
       </div>
-      <div class="col-md-4" *ngIf="account?.lead?.product?.type === productType.LOAN">
+      <div
+        class="col-md-4"
+        *ngIf="account?.lead?.product?.type === productType.LOAN"
+      >
         <div class="d-flex field">
           <label>Tenure(in months) :</label>
-          <div>{{account?.lead?.tenure}}</div>
+          <div>{{ account?.lead?.tenure }}</div>
         </div>
       </div>
       <div class="col-md-12 mt-4">
         <h3>Customer Info</h3>
-        <hr>
+        <hr />
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Customer ID :</label>
-          <div>{{account?.lead?.customer?.customerId}}</div>
+          <div>{{ account?.lead?.customer?.customerId }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Customer Name :</label>
-          <div>{{account?.lead?.customer?.name}}</div>
+          <div>{{ account?.lead?.customer?.name }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Gender :</label>
-          <div>{{account?.lead?.customer?.gender}}</div>
+          <div>{{ account?.lead?.customer?.gender }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Mobile Number :</label>
-          <div>{{account?.lead?.customer?.mobileNo}}</div>
+          <div>{{ account?.lead?.customer?.mobileNo }}</div>
         </div>
       </div>
       <div class="col-md-12 mt-4">
         <h3>Product Info</h3>
-        <hr>
+        <hr />
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Product Name :</label>
-          <div>{{account?.lead?.product?.name}}</div>
+          <div>{{ account?.lead?.product?.name }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Interest % :</label>
-          <div>{{account?.lead?.product?.interest}}</div>
+          <div>{{ account?.lead?.product?.interest }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Frequency :</label>
-          <div>{{account?.lead?.product?.frequency}}</div>
+          <div>{{ account?.lead?.product?.frequency }}</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="d-flex field">
           <label>Secured Product? :</label>
-          <div>{{account?.lead?.product?.securedProduct}}</div>
+          <div>{{ account?.lead?.product?.securedProduct }}</div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

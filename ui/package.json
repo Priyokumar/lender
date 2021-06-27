@@ -28,7 +28,7 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@babel/compat-data": "^7.8.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.0.2",
     "chart.js": "^2.9.4",
     "copyfiles": "^2.1.1",
     "date-fns": "^2.7.0",

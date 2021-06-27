@@ -1,96 +1,130 @@
 <div class="m-3">
-  <div class="row p-1 bg-gold">
-    <div class="col-md-6">
-      <span class="font-400 font-banner" style="line-height: 35px;">Leads</span>
-    </div>
-    <div class="col-md-6 text-right">
+  <div class="d-flex justify-content-between p-1 ps-4 bg-gold">
+    <span class="font-400 font-banner" style="line-height: 35px">Leads</span>
+    <div>
       <button class="btn btn-save" [routerLink]="['/leads/add']">
         <mat-icon class="white-icon">add</mat-icon>&nbsp;Add Lead
       </button>
     </div>
   </div>
   <div class="row">
-
     <div class="col-md-12 p-0 table-header mb-5">
-
       <div class="no-shadow w-100">
-        <table mat-table [dataSource]="dataSource" matSort [ngStyle]="{'display': dataSource ? '': 'none'}">
-
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          [ngStyle]="{ display: dataSource ? '' : 'none' }"
+        >
           <ng-container matColumnDef="leadId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead ID</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.leadId}}</td>
+              {{ row.leadId }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="customerName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Customer Name
+            </th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.customer?.name}}</td>
+              {{ row.customer?.name }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="requestedAmount">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Requested Amount</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Requested Amount
+            </th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.requestedAmount | inr}}</td>
+              {{ row.requestedAmount | inr }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="productName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Product Name
+            </th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.product?.name}}</td>
+              {{ row.product?.name }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="interest">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Interest %</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Interest %
+            </th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.product?.interest}}</td>
+              {{ row.product?.interest }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="frequency">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.product?.frequency}}</td>
+              {{ row.product?.frequency }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="tenure">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tenure(in months)</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Tenure(in months)
+            </th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              {{row.tenure ? row.tenure : 'NA'}}
+              {{ row.tenure ? row.tenure : "NA" }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let row" class="name-class">
-              <div class="font-500" [ngClass]="{
-                'font-orange': row.status === leadStatus.CLOSED,
-                'font-green': row.status === leadStatus.QUALIFIED,
-                'font-secondary-blue': row.status === leadStatus.NEW,
-                'font-red': row.status === leadStatus.DIS_QUALIFIED
-              }">{{row.status}}</div> 
+              <div
+                class="font-500"
+                [ngClass]="{
+                  'font-orange': row.status === leadStatus.CLOSED,
+                  'font-green': row.status === leadStatus.QUALIFIED,
+                  'font-secondary-blue': row.status === leadStatus.NEW,
+                  'font-red': row.status === leadStatus.DIS_QUALIFIED
+                }"
+              >
+                {{ row.status }}
+              </div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let row" class="text-right">
-              <mat-icon style="color: rgb(6, 80, 51); cursor: pointer;"  [routerLink]="'/leads/'+row.id+'/edit'">edit
-              </mat-icon> &nbsp;
-              <mat-icon style="color: firebrick; cursor: pointer;" (click)="delete(row.id)">delete</mat-icon>
-          </ng-container>
+              <mat-icon
+                style="color: rgb(6, 80, 51); cursor: pointer"
+                [routerLink]="'/leads/' + row.id + '/edit'"
+                >edit
+              </mat-icon>
+              &nbsp;
+              <mat-icon
+                style="color: firebrick; cursor: pointer"
+                (click)="delete(row.id)"
+                >delete</mat-icon
+              >
+            </td></ng-container
+          >
 
-          <tr mat-header-row *matHeaderRowDef="columns;sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: columns ; let i = index;">
-          </tr>
+          <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: columns; let i = index"
+          ></tr>
         </table>
-        <div class="d-flex justify-content-center align-items-center" style="height: 40vh;"
-          *ngIf="!dataSource || !dataSource.data">
+        <div
+          class="d-flex justify-content-center align-items-center"
+          style="height: 40vh"
+          *ngIf="!dataSource || !dataSource.data"
+        >
           <div>
             <h4 class="font-grey font-300">No lead to display.</h4>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

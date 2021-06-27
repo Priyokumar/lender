@@ -1,25 +1,22 @@
 <div class="form-min-height m-3 bg-white">
-  <div class="row p-1 bg-gold">
-    <div class="col-md-6">
-      <span class="font-400 font-banner" style="line-height: 35px;">Role</span>
-    </div>
-    <div class="col-md-6 text-right">
+  <div class="d-flex justify-content-between p-1 ps-4 bg-gold">
+    <span class="font-400 font-banner" style="line-height: 35px">Role</span>
+    <div>
       <button class="btn btn-cancel" routerLink="/security/roles">
         <mat-icon class="white-icon">clear</mat-icon>&nbsp;Cancel
       </button>
-      <button class="btn btn-save" (click)="save()" [disabled]='!form.valid'>
+      <button class="btn btn-save" (click)="save()" [disabled]="!form.valid">
         <mat-icon class="white-icon">save_alt</mat-icon>&nbsp;Save Class
       </button>
     </div>
   </div>
 
-  <div [ngClass]="['pt-1','pr-5','pl-5']">
-
+  <div [ngClass]="['pt-1', 'pr-5', 'pl-5']">
     <div class="row pt-3">
       <div class="col-md-4">
         <mat-form-field appearance="fill" class="w-100">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Placeholder" [formControl]="nameCtrl">
+          <input matInput placeholder="Placeholder" [formControl]="nameCtrl" />
           <mat-error *ngIf="nameCtrl.hasError('required')">
             Name is <strong>required</strong>
           </mat-error>
@@ -28,7 +25,11 @@
       <div class="col-md-4">
         <mat-form-field appearance="fill" class="w-100">
           <mat-label>Description</mat-label>
-          <input matInput placeholder="Placeholder" [formControl]="descriptionCtrl">
+          <input
+            matInput
+            placeholder="Placeholder"
+            [formControl]="descriptionCtrl"
+          />
           <mat-error *ngIf="descriptionCtrl.hasError('required')">
             Description is <strong>required</strong>
           </mat-error>

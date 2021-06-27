@@ -1,21 +1,20 @@
 <main>
   <div class="form-min-height m-3 bg-white">
-    <div class="row p-1 bg-gold">
-      <div class="col-md-6">
-        <span class="font-400 font-banner" style="line-height: 35px;">Account</span>
-      </div>
-      <div class="col-md-6 text-right">
+    <div class="d-flex justify-content-between p-1 ps-4 bg-gold">
+      <span class="font-400 font-banner" style="line-height: 35px"
+        >Account</span
+      >
+      <div>
         <button class="btn btn-cancel" routerLink="/accounts">
           <mat-icon class="white-icon">clear</mat-icon>&nbsp;Cancel
         </button>
-        <button class="btn btn-save" (click)="save()" [disabled]='!form.valid'>
+        <button class="btn btn-save" (click)="save()" [disabled]="!form.valid">
           <mat-icon class="white-icon">save_alt</mat-icon>&nbsp;Save Account
         </button>
       </div>
     </div>
 
-    <div [ngClass]="['pt-1','pr-5','pl-5']">
-
+    <div [ngClass]="['pt-1', 'pr-5', 'pl-5']">
       <div class="row pt-3 mb-4 pb-4">
         <div class="col-md-12 mt-3 mb-3">
           <p class="subtitle">Lead Info</p>
@@ -25,7 +24,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Lead ID</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="leadIdCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="leadIdCtrl"
+            />
             <button mat-button matSuffix mat-icon-button (click)="selectLead()">
               <mat-icon>search</mat-icon>
             </button>
@@ -38,7 +41,10 @@
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Lead Status</mat-label>
             <mat-select [formControl]="leadStatusCtrl">
-              <mat-option *ngFor="let leadStatus of leadStatuses" [value]="leadStatus.val">{{leadStatus.val}}
+              <mat-option
+                *ngFor="let leadStatus of leadStatuses"
+                [value]="leadStatus.val"
+                >{{ leadStatus.val }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="leadStatusCtrl.hasError('required')">
@@ -49,34 +55,55 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Requested Amount</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="requestedAmountCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="requestedAmountCtrl"
+            />
             <mat-error *ngIf="requestedAmountCtrl.hasError('required')">
               Requested Amount is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.LOAN">
+        <div
+          class="col-md-4"
+          *ngIf="selectedLead?.product?.type === productType.LOAN"
+        >
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Tenure(in months)</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="tenureCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="tenureCtrl"
+            />
             <mat-error *ngIf="tenureCtrl.hasError('required')">
               Tenure(in months) is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.SENDOI">
+        <div
+          class="col-md-4"
+          *ngIf="selectedLead?.product?.type === productType.SENDOI"
+        >
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Monthly Interest</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="monthlyInterestCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="monthlyInterestCtrl"
+            />
             <mat-error *ngIf="monthlyInterestCtrl.hasError('required')">
               Monthly Interest is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-md-4" *ngIf="selectedLead?.product?.type === productType.LOAN">
+        <div
+          class="col-md-4"
+          *ngIf="selectedLead?.product?.type === productType.LOAN"
+        >
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>EMI</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="emiCtrl">
+            <input matInput placeholder="Placeholder" [formControl]="emiCtrl" />
             <mat-error *ngIf="emiCtrl.hasError('required')">
               EMI is <strong>required</strong>
             </mat-error>
@@ -90,7 +117,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Customer ID</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="customerIdCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="customerIdCtrl"
+            />
             <mat-error *ngIf="customerIdCtrl.hasError('required')">
               Customer ID is <strong>required</strong>
             </mat-error>
@@ -99,7 +130,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Customer Name</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="customerNameCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="customerNameCtrl"
+            />
             <mat-error *ngIf="customerNameCtrl.hasError('required')">
               Customer is <strong>required</strong>
             </mat-error>
@@ -109,14 +144,20 @@
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Gender</mat-label>
             <mat-select [formControl]="genderCtrl">
-              <mat-option *ngFor="let gender of genders" [value]="gender.val">{{gender.val}}</mat-option>
+              <mat-option *ngFor="let gender of genders" [value]="gender.val">{{
+                gender.val
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Mobile Number</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="mobileNoCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="mobileNoCtrl"
+            />
             <mat-error *ngIf="mobileNoCtrl.hasError('required')">
               Mobile Number is <strong>required</strong>
             </mat-error>
@@ -129,7 +170,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Product Name</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="productNameCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="productNameCtrl"
+            />
             <mat-error *ngIf="productNameCtrl.hasError('required')">
               Product Name is <strong>required</strong>
             </mat-error>
@@ -138,7 +183,12 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Interest % </mat-label>
-            <input type="number" matInput placeholder="Placeholder" [formControl]="interestCtrl">
+            <input
+              type="number"
+              matInput
+              placeholder="Placeholder"
+              [formControl]="interestCtrl"
+            />
             <mat-error *ngIf="interestCtrl.hasError('required')">
               Interest is <strong>required</strong>
             </mat-error>
@@ -147,17 +197,21 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Frequency</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="frequencyCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="frequencyCtrl"
+            />
             <mat-error *ngIf="frequencyCtrl.hasError('required')">
               Frequency is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-4">
-          <mat-label>Secured Product?</mat-label><br><br>
+          <mat-label>Secured Product?</mat-label><br /><br />
           <mat-radio-group [(ngModel)]="securedProduct" disabled>
             <mat-radio-button *ngFor="let option of yesNo" [value]="option.val">
-              {{option.key}}&nbsp;&nbsp;&nbsp;&nbsp;
+              {{ option.key }}&nbsp;&nbsp;&nbsp;&nbsp;
             </mat-radio-button>
           </mat-radio-group>
         </div>
@@ -169,7 +223,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Loan Account No.</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="accountNoCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="accountNoCtrl"
+            />
             <mat-error *ngIf="accountNoCtrl.hasError('required')">
               Loan Account No. is <strong>required</strong>
             </mat-error>
@@ -178,10 +236,17 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Date of Creation</mat-label>
-            <input matInput [matDatepicker]="createdAtDatePicker" placeholder="Date of Creation"
-              [formControl]="createdAtCtrl">
-            <mat-datepicker-toggle matSuffix [for]="createdAtDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #createdAtDatePicker ></mat-datepicker>
+            <input
+              matInput
+              [matDatepicker]="createdAtDatePicker"
+              placeholder="Date of Creation"
+              [formControl]="createdAtCtrl"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="createdAtDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #createdAtDatePicker></mat-datepicker>
             <mat-error *ngIf="createdAtCtrl.hasError('required')">
               Date of Creation is <strong>required</strong>
             </mat-error>
@@ -190,9 +255,16 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Repayment Date</mat-label>
-            <input matInput [matDatepicker]="repaymentDatePicker" placeholder="Repayment Date"
-              [formControl]="repaymentDateCtrl">
-            <mat-datepicker-toggle matSuffix [for]="repaymentDatePicker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="repaymentDatePicker"
+              placeholder="Repayment Date"
+              [formControl]="repaymentDateCtrl"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="repaymentDatePicker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #repaymentDatePicker></mat-datepicker>
             <mat-error *ngIf="repaymentDateCtrl.hasError('required')">
               Repayment Date is <strong>required</strong>
@@ -202,7 +274,11 @@
         <div class="col-md-4">
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Closing Balance</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="closingBalanceCtrl">
+            <input
+              matInput
+              placeholder="Placeholder"
+              [formControl]="closingBalanceCtrl"
+            />
             <mat-error *ngIf="closingBalanceCtrl.hasError('required')">
               Closing Balance is <strong>required</strong>
             </mat-error>
@@ -212,8 +288,12 @@
           <mat-form-field appearance="fill" class="w-100">
             <mat-label>Status</mat-label>
             <mat-select [formControl]="statusCtrl">
-              <mat-option *ngFor="let accountStatus of accountStatuses" [value]="accountStatus.val">
-                {{accountStatus.val}}</mat-option>
+              <mat-option
+                *ngFor="let accountStatus of accountStatuses"
+                [value]="accountStatus.val"
+              >
+                {{ accountStatus.val }}</mat-option
+              >
             </mat-select>
             <mat-error *ngIf="statusCtrl.hasError('required')">
               Status ID is <strong>required</strong>
