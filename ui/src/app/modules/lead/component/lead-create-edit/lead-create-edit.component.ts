@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Genders, LeadStatus, LeadStatuses, ProductType, ProductTypes, YesNo } from 'src/app/constant';
@@ -13,6 +12,8 @@ import { ILead } from '../../lead.model';
 import { LeadService } from '../../service/lead.service';
 import { CustomerListDialogComponent } from 'src/app/modules/dialog/components/customer-list-dialog/customer-list-dialog.component';
 import { ProductListDialogComponent } from 'src/app/modules/dialog/components/product-list-dialog/product-list-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lead-create-edit',
@@ -52,7 +53,6 @@ export class LeadCreateEditComponent implements OnInit {
 
   constructor(
     private leadService: LeadService,
-    private productService: ProductService,
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private router: Router,

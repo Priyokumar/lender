@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NavigationStart, Router, RouterEvent } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { AuthService } from './modules/auth/services/auth.service';
 import { IUser } from './modules/security/security.model';
 import { allSideNavs, ISideNav } from './modules/shared/model/shared.model';

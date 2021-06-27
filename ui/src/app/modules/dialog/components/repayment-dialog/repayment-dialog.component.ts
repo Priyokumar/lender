@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { RepaymentStatuses } from "src/app/constant";
 import { IAccount } from "src/app/modules/account/account.model";
 import { IRepayment } from "src/app/modules/repayment/repayment.model";

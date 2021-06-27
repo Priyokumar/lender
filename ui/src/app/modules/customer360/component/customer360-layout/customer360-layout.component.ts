@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ICustomer } from 'src/app/modules/customer/customer.model';
 import { CustomerListDialogComponent } from 'src/app/modules/dialog/components/customer-list-dialog/customer-list-dialog.component';
-import { LoaderService } from 'src/app/modules/shared/services/loader.service';
 
 @Component({
   selector: 'app-customer360-layout',

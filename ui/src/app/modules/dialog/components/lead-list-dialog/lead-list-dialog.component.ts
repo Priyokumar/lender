@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatDialogRef } from '@angular/material';
-import { LeadStatus } from 'src/app/constant';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ILead } from 'src/app/modules/lead/lead.model';
 import { LeadService } from 'src/app/modules/lead/service/lead.service';
 

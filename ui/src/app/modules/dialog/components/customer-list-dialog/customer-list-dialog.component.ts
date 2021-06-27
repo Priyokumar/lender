@@ -1,10 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import {
-  MatDialog,
-  MatDialogRef,
-  MatTableDataSource,
-  MAT_DIALOG_DATA,
-} from "@angular/material";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatTableDataSource } from "@angular/material/table";
 import { ICustomer } from "src/app/modules/customer/customer.model";
 import { CustomerService } from "src/app/modules/customer/service/customer.service";
 import { LeadService } from "src/app/modules/lead/service/lead.service";

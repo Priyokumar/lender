@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AccountStatus } from 'src/app/constant';
 import { IAccount, IAccountQueryParams } from 'src/app/modules/account/account.model';
 import { AccountService } from 'src/app/modules/account/service/account.service';

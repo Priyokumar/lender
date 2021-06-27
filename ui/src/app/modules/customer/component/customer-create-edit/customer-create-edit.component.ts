@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Statuses, Genders } from 'src/app/constant';
-import { IRole, IUser } from 'src/app/modules/security/security.model';
+import { IRole } from 'src/app/modules/security/security.model';
 import { SnackbarInfoComponent } from 'src/app/modules/shared/components/snackbar-info/snackbar-info.component';
 import { IActionResponse, SnackBarConfig } from 'src/app/modules/shared/model/shared.model';
 import { ICustomer } from '../../customer.model';
